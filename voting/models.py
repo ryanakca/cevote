@@ -8,11 +8,8 @@ class Voter(models.Model):
     provide the voter from voting twice.
     """
 
-    uuid = UUIDField("UUID")
-    has_voted = models.BooleanField("Has voted?",False)
-
-    def __init__(self):
-        self.uuid.create_uuid()
+    uuid = UUIDField("UUID",version=4)
+    has_voted = models.BooleanField("Has voted?",default=False)
 
     def __unicode__(self):
         return self.uuid
@@ -31,8 +28,29 @@ class Group(models.Model):
     def __unicode__(self):
         return self.name
 
-    def create_voter(self):
-        self.voter.create()
+    def create_voters(self, number, *args):
+        """ Creates number of Voter() with *args as its groups. """
+        for v in range(number):
+            v = Voter()
+            v.save()
+            for k in args:
+                g = k
+                g.voters.add(v)
+    create_voters.short_description = "Create voters"
+
+class Position(models.Model):
+    """ This class represents a position. It has a name and the required
+    amount of people required to fill a position. voting_groups represents the
+    groups of voters that can vote for this position.
+    """
+
+    name = models.CharField(max_length=200)
+    amount_of_electees = models.IntegerField("Amount of electees required to \
+    fill this position")
+    voting_groups = models.ManyToManyField(Group)
+
+    def __unicode__(self):
+        return self.name
 
 class Candidate(models.Model):
     """ This class represents a Candidate. Each candidate has a firstname, an
@@ -51,16 +69,3 @@ class Candidate(models.Model):
     def __unicode__(self):
         return self.firstname + self.initial + self.last_name
 
-class Position(models.Model):
-    """ This class represents a position. It has a name and the required
-    amount of people required to fill a position. voting_groups represents the
-    groups of voters that can vote for this position.
-    """
-
-    name = models.CharField(max_length=200)
-    amount_of_electees = models.IntegerField("Amount of electees required to \
-    fill this position")
-    voting_groups = models.ManyToManyField(Group)
-
-    def __unicode__(self):
-        return self.name

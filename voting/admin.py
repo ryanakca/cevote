@@ -1,24 +1,25 @@
 from cevote.voting.models import Voter, Group, Candidate, Position
 from django.contrib import admin
 
-class VoterAdmin(admin.ModelAdmin):
-   exclude = ['has_voted',]
-   list_filter = ['groups',]
-
+class VoterInline(admin.TabularInline):
+    model = Voter
+    exclude = ['has_voted',]
 
 class GroupAdmin(admin.ModelAdmin):
-    model = Voter
+    model = Group
+    inline = ['VoterInline',]
 
 class CandidateInline(admin.TabularInline):
     model = Candidate
     extra = 3
 
 class CandidateAdmin(admin.ModelAdmin):
-    inital.width = 20
+    #inital.width = 20
+    pass
+    
 class PositionAdmin(admin.ModelAdmin):
-    inlines = [CandidateInline,]
+    inlines = ['CandidateInline',]
 
-admin.site.register(Voter, VoterAdmin)
-admin.site.register(Group)
+admin.site.register(Group, GroupAdmin)
 admin.site.register(Candidate)
 admin.site.register(Position, PositionAdmin)
