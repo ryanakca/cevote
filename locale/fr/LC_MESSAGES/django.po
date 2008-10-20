@@ -1,0 +1,75 @@
+# French translation for cevote.
+# Copyright (C) 2008 Ryan Kavanagh
+# This file is distributed under the same license as the CEVote package.
+# Ryan Kavanagh 2008 <ryanakca@kubuntu.org.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: alpha\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-10-20 19:05-0400\n"
+"PO-Revision-Date: 2008-10-20 17:58-0400\n"
+"Last-Translator: FULL NAME <ryanakca@kubuntu.org\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: settings.py:27
+msgid "English"
+msgstr "Anglais"
+
+#: settings.py:28
+msgid "French"
+msgstr "Français"
+
+#: template_dir/results/index.html:4 template_dir/results/index.html.py:8
+#, fuzzy
+msgid "Election Results"
+msgstr "Résultats des élections"
+
+#: template_dir/results/index.html:15
+msgid "Position"
+msgstr "Poste"
+
+#: template_dir/results/index.html:16
+msgid "Candidate"
+msgstr "Candidat(e)"
+
+#: template_dir/results/index.html:17
+msgid "Votes"
+msgstr "Votes"
+
+#: template_dir/results/index.html:42
+msgid "No positions have been created."
+msgstr "Aucun poste existe"
+
+#: voting/models.py:12
+msgid "UUID"
+msgstr "UUID"
+
+#: voting/models.py:13
+msgid "Has voted?"
+msgstr "A voté?"
+
+#: voting/models.py:24
+msgid "Group name"
+msgstr "Nom du groupe"
+
+#: voting/models.py:26
+#, fuzzy
+msgid "Percent of a vote this group can cast"
+msgstr "Pourcentage d'une vote que ce groupe représente "
+
+#: voting/models.py:39
+msgid "Create voters"
+msgstr "Crée des voteurs"
+
+#: voting/models.py:48
+msgid "Amount of electees required to fill this position"
+msgstr "Nombre d'élus requis pour ce poste"
+
+#: voting/models.py:51
+#, fuzzy
+msgid "Location of this field on the voter's balot"
+msgstr "Lieu de ce poste sur le bulletin de vote"

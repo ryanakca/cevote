@@ -1,0 +1,45 @@
+{% load i18n %}
+<html>
+<head>
+    <title>{% trans "Election Results" %}</title>
+    <link rel="stylesheet" href="/media_dir/results/results.css" type="text/css" />
+</head>
+<body>
+<h1>{% trans "Election Results" %} </h1>
+
+{% if candidate_position_dict %}
+{# {<Position: Foobar>:[[<Candidate: 1>, True], [<Candidate: 2>, False], #}
+{# ...], <Position: Barfoo>:[... } #}
+    <table border="1">
+        <tr>
+            <th>{% trans "Position" %}</th>
+            <th>{% trans "Candidate" %}</th>
+            <th>{% trans "Votes" %}</th>
+        </tr>
+        {% for position,candidates in candidate_position_dict.items %}
+        <tr>
+            <td rowspan="{{ candidates|length|add:"1" }}">
+                {{ position.name }}
+            </td>
+        {% for candidate in candidates %}
+        {# ifnotequal candidate candidates.0 #}
+        {# We don't need this for the first candidate, the position #}
+        {# provides it #}
+        <tr>
+        {# endifnotequal #}
+        {% if candidate.1 %}
+            <td class="winner">{{ candidate.0 }}</td>
+            <td class="winner">{{ candidate.0.votes }}</td>
+        {% else %}
+            <td>{{ candidate.0 }}</td>
+            <td>{{ candidate.0.votes }}</td>
+        {% endif %}
+        </tr>
+        {% endfor %}
+        {% endfor %}
+    </table>
+{% else %}
+    {% trans "No positions have been created." %}
+{% endif %}
+</body>
+</html>

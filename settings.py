@@ -23,15 +23,23 @@ TIME_ZONE = 'America/Toronto'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-ca'
 
+# enabled languages, along with a dummy ugettext to prevent a circular import
+ugettext = lambda s: s
+
+LANGUAGES = (
+    ('en', ugettext('English')),
+    ('fr', ugettext('French')),
+)
+
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = False
+USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = '/home/ryan/work/cevote/media_dir/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -53,10 +61,17 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.load_template_source',
 )
 
+# i18n
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.auth',
+    'django.core.context_processors.i18n',
+)
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 )
 
 ROOT_URLCONF = 'cevote.urls'
@@ -65,6 +80,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    "/home/ryan/work/cevote/template_dir/"
 )
 
 INSTALLED_APPS = (
@@ -75,4 +91,5 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django_extensions',
     'cevote.voting',
+    'cevote.results',
 )

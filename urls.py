@@ -1,5 +1,8 @@
 from django.conf.urls.defaults import *
 
+# for the settings.DEBUG
+import settings
+
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -14,4 +17,13 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^admin/(.*)', admin.site.root),
+    (r'^results/', include('cevote.results.urls')),
+#    (r'^i18n/', include('django.conf.urls.i18n'))
 )
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^media_dir/(?P<path>.*)$', 'django.views.static.serve', \
+            {'document_root': '/home/ryan/work/cevote/media_dir/'}),
+    )
+

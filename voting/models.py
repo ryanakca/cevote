@@ -1,5 +1,6 @@
 from django.db import models
 from django_extensions.db.fields import UUIDField
+from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
 class Voter(models.Model):
@@ -8,8 +9,8 @@ class Voter(models.Model):
     provide the voter from voting twice.
     """
 
-    uuid = UUIDField("UUID",version=4)
-    has_voted = models.BooleanField("Has voted?",default=False)
+    uuid = UUIDField(_("UUID"),version=4)
+    has_voted = models.BooleanField(_("Has voted?"),default=False)
 
     def __unicode__(self):
         return self.uuid
@@ -20,10 +21,10 @@ class Group(models.Model):
     ask what percentage of a vote this group can cast.
     """
 
-    name = models.CharField("Group name", max_length=200)
+    name = models.CharField(_("Group name"), max_length=200)
     voters = models.ManyToManyField(Voter)
-    vote_percentage = models.IntegerField("Percent of a vote this group can \
-    cast", default=1.00)
+    vote_percentage = models.IntegerField(_("Percent of a vote this group " \
+        "can cast"), default=1.00)
 
     def __unicode__(self):
         return self.name
@@ -33,10 +34,9 @@ class Group(models.Model):
         for v in range(number):
             v = Voter()
             v.save()
-            for k in args:
-                g = k
+            for g in args:
                 g.voters.add(v)
-    create_voters.short_description = "Create voters"
+    create_voters.short_description = _("Create voters")
 
 class Position(models.Model):
     """ This class represents a position. It has a name and the required
@@ -45,16 +45,18 @@ class Position(models.Model):
     """
 
     name = models.CharField(max_length=200)
-    amount_of_electees = models.IntegerField("Amount of electees required to \
-    fill this position")
+    amount_of_electees = models.IntegerField(_("Amount of electees " \
+        "required to fill this position"))
     voting_groups = models.ManyToManyField(Group)
+    weight = models.IntegerField(_("Location of this field on the " \
+        "voter's balot"), default=0)
 
     def __unicode__(self):
         return self.name
 
 class Candidate(models.Model):
-    """ This class represents a Candidate. Each candidate has a firstname, an
-    initial in for the occasion of two voters with the same firstname &
+    """ This class represents a Candidate. Each candidate has a first_name, an
+    initial in for the occasion of two voters with the same first_name &
     lastname, a lastname. Associated with a single position and a picture. Each
     candidate is also associated with the amount of votes aquired.
     """
@@ -67,5 +69,4 @@ class Candidate(models.Model):
     votes = models.IntegerField()
 
     def __unicode__(self):
-        return self.firstname + self.initial + self.last_name
-
+        return "%s, %s %s" % (self.last_name.upper(), self.first_name,  self.initial)
