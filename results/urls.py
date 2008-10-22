@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('',
-    (r'^$', 'cevote.results.views.index'),
+urlpatterns = patterns('cevote.results.views',
+    (r'^$', 'index'),
 )

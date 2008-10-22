@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>Quiz Display</title>
+    </head>
+    <body>
+        <h1>Answer These Questions!</h1>
+        <form action="." method="post">
+            {% for form in forms %}
+                {{ form.position }}
+                {{ form.as_p }}
+            {% endfor %}
+            <input type="submit">
+        </form>
+    </body>
+</html>

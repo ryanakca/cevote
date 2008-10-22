@@ -21,7 +21,7 @@ TIME_ZONE = 'America/Toronto'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-ca'
+LANGUAGE_CODE = 'en'
 
 # enabled languages, along with a dummy ugettext to prevent a circular import
 ugettext = lambda s: s

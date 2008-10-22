@@ -18,7 +18,8 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     (r'^admin/(.*)', admin.site.root),
     (r'^results/', include('cevote.results.urls')),
-#    (r'^i18n/', include('django.conf.urls.i18n'))
+    (r'^i18n/', include('django.conf.urls.i18n')),
+    (r'^$', include('cevote.voting.urls')),
 )
 
 if settings.DEBUG:
@@ -26,4 +27,3 @@ if settings.DEBUG:
         (r'^media_dir/(?P<path>.*)$', 'django.views.static.serve', \
             {'document_root': '/home/ryan/work/cevote/media_dir/'}),
     )
-
