@@ -15,13 +15,16 @@ def vote(request):
         for form in form_list:
             if not form.is_valid():
                 break
-            form.candidates.votes += 1
+            for cand in form.cadidate_set:
+                cand.votes += 1
         else:
             # Prevent hitting back to resubmit
             return HttpResponseRedirect(reverse('thanks'))
     else:
         # Displaying vote form
-        form_list = create_position_forms_list(data=request)
+        form_list = []
+        for pos in Position.objects.all():
+            form_list.append(PositionForm(pos, prefix="pos_%s" % pos, instance=pos)) 
     return render_to_response('vote.html', {'forms': form_list})
 
 
