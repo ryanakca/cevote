@@ -89,3 +89,4 @@ class Candidate(models.Model):
     class Meta:
         verbose_name = _("Candidate")
         verbose_name_plural = _("Candidates")
+        ordering = ['votes',]

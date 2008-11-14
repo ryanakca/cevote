@@ -1,15 +1,20 @@
+{% load i18n %}
 <html>
     <head>
         <title>Vote</title>
     </head>
     <body>
         <h1>Vote</h1>
+        {% if position_forms %}
         <form action="." method="post">
-            {% for form in forms %}
-                {{ form.position }}
-                {{ form.as_p }}
+            {% for position,candidates in position_forms.items %}
+                {{ position.name }}
+                {% for cand in candidates %}
+                {{ cand }}
+                {% endfor %}
             {% endfor %}
             <input type="submit">
         </form>
+        {% endif %}
     </body>
 </html>
