@@ -5,30 +5,25 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from cevote.voting.models import Candidate, Position
-from cevote.voting.forms import PositionForm, CandidateForm, \
-                                create_position_forms_list
+from cevote.voting.forms import PositionForm
 
 def vote(request):
     if request.method == "POST":
-        pforms = {}
+        pforms = []
+        raise str(request.POST)
         for pos in Position.objects.all():
-#            pform = PositionForm(request.POST, instance=pos, \
-#                    prefix="pos_%s" % pos, instance = pos.get())
-            cforms = [CandidateForm(request.POST, prefix="cand_%s" % cand, \
-                    instance=cand) for cand in pos.candidate_set.all()]
-            pforms[pos] = cforms
-        # We've just created a dictionary of {PositionForm:[CandidateForm1, CandidateForm2, ...], ...}
-#        for pform, cforms in pforms.items():
-            #if pform.is_valid() and all([cf.is_valid() for cf in cforms]):
+            pforms.append(PositionForm(pos, request.POST))
+        for form in pforms:
+            if form.is_valid():
+                raise request.data
+#                selected_candidate = form.pos.candidate_set.get(id = form[candidates])
+#                selected_candidate.votes += 1
+#                selected_candidate.save()
+            else:
+                pass
+        HttpResponse(_("Your vote has been successfully submitted."))
     else:
-        pforms = {}
+        pforms = [] 
         for pos in Position.objects.all():
-            #pform = PositionForm(instance=pos, prefix="pos_%s" % pos)
-            cforms = [CandidateForm(prefix="cand_%s" % cand, \
-                    instance=cand) for cand in pos.candidate_set.all()]
-            pforms[pos] = cforms
-        # We've just created a dictionary of {PositionForm:[CandidateForm1, CandidateForm2, ...], ...}
+            pforms.append(PositionForm(pos, prefix="pos_%d" % pos.id))
         return render_to_response('vote.html', {'position_forms': pforms}) 
-
-def thanks(request):
-    return HttpResponse(_("Your vote has been successfully submitted."))

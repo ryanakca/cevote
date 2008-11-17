@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import *
+from cevote.voting.models import Position
 
 # for the settings.DEBUG
 import settings

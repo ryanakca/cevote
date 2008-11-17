@@ -7,12 +7,13 @@
         <h1>Vote</h1>
         {% if position_forms %}
         <form action="." method="post">
-            {% for position,candidates in position_forms.items %}
-                {{ position.name }}
-                {% for cand in candidates %}
-                {{ cand }}
-                {% endfor %}
+            <table border="1">
+            {% for position in position_forms %}
+            <tr><td>{{ position.name }}</td>
+                <td>{% trans "Select " %} {{ position.number }}</td>
+                {{ position.as_table }}
             {% endfor %}
+            </table>
             <input type="submit">
         </form>
         {% endif %}
