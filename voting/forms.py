@@ -1,5 +1,6 @@
 from django import forms
 from models import Position, Candidate
+from django.utils.translation import ugettext_lazy as _
 
 #class PositionForm(forms.ModelForm):
 #    def __init__(self, position, *args, **kwargs):
@@ -26,19 +27,19 @@ from models import Position, Candidate
 
 class PositionForm(forms.Form):
     candidates = forms.ModelMultipleChoiceField(widget = \
-        forms.SelectMultiple(), queryset = Candidate.objects.all())
+        forms.CheckboxSelectMultiple(), queryset = Candidate.objects.all())
 
     def __init__(self, position, *args, **kwargs):
-        self.candidates = position.candidate_set.order_by('initial').order_by('first_name').order_by('last_name').all()
+        super(PositionForm, self).__init__(*args, **kwargs)
         self.name = position.name
         self.weight = position.weight
         self.number = position.amount_of_electees
-        super(PositionForm, self).__init__(*args, **kwargs)
+        self.fields['candidates'].queryset = position.candidate_set.order_by('initial').order_by('first_name').order_by('last_name').all()
 
     def clean(self):
         cleaned_data = self.cleaned_data
-        candidates = cleaned_data.get("candidates")
-        if len(candidates) == (self.number - 1):
+        candidates = cleaned_data.get('candidates')
+        if len(self.fields['candidates'].queryset) == (self.number - 1):
             return cleaned_data
         else:
             raise forms.ValidationError(_("Selected too many candidates. "
