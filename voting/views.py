@@ -11,7 +11,12 @@ def vote(request):
     if request.method == "POST":
         pforms = []
         for pos in Position.objects.all():
-            pforms.append(PositionForm(pos, request.POST))
+            temppost = request.POST.copy()
+            temppost["pos_%d-name" % pos.id] = pos.name
+            temppost["pos_%d-weight" % pos.id] = pos.weight
+            temppost["pos_%d-amount_of_electees" % pos.id ] = pos.amount_of_electees
+            raise str(temppost)
+            pforms.append(PositionForm(temppost, prefix="pos_%d" % pos.id))
         for form in pforms:
             if form.is_valid() == False:
                 for candidate in form.candidate:
