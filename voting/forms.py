@@ -30,10 +30,10 @@ class PositionForm(forms.Form):
         forms.CheckboxSelectMultiple(), queryset = Candidate.objects.all())
 
     def __init__(self, position, *args, **kwargs):
-        super(PositionForm, self).__init__(*args, **kwargs)
         self.name = position.name
         self.weight = position.weight
         self.number = position.amount_of_electees
+        super(PositionForm, self).__init__(*args, **kwargs)
         self.fields['candidates'].queryset = position.candidate_set.order_by('initial').order_by('first_name').order_by('last_name').all()
 
     def clean(self):
