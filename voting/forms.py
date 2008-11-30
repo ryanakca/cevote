@@ -2,22 +2,27 @@ from django import forms
 from models import Position, Candidate
 from django.utils.translation import ugettext_lazy as _
 
-class PositionForm(forms.Form):
-    candidates = forms.ModelMultipleChoiceField(widget = \
-        forms.CheckboxSelectMultiple(), queryset = Candidate.objects.all())
+class PositionForm(forms.ModelForm):
+    candidate_set = forms.ModelMultipleChoiceField(
+            Candidate.objects.all(),
+            widget = forms.CheckboxSelectMultiple())
 
-    def __init__(self, candidates, *args, **kwargs):
+    class Meta:
+        model = Position
+        fields = ('candidate_set')
+
+    def __init__(self, *args, **kwargs):
         super(PositionForm, self).__init__(*args, **kwargs)
-        self.fields['candidates'].queryset = candidates
-        self.weight = self.fields['candidates'].queryset[0].position.weight
-        self.name = self.fields['candidates'].queryset[0].position.name
-        self.number = self.fields['candidates'].queryset[0].position.amount_of_electees
+        self.fields['candidate_set'].queryset = self.instance.candidate_set.all()
+        self.name = self.instance.name
+        self.weight = self.instance.weight
+        self.number = self.instance.amount_of_electees
 
     def clean(self):
-        cleaned_data = self.cleaned_data
-        candidates = cleaned_data.get('candidates')
-        if len(self.fields['candidates'].queryset) == (self.number - 1):
+        candidates = self.cleaned_data.get('candidate_set')
+        if len(self.fields['candidates'].queryset) == \
+                (self.number - 1):
             return cleaned_data
         else:
             raise forms.ValidationError(_("Selected too many candidates. "
-                "Select %d instead" % self.number))
+                "Select %d instead" % self.amount_of_electees))
