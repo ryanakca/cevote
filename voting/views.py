@@ -11,10 +11,9 @@ def vote(request):
     if request.method == "POST":
         pforms = []
         for pos in Position.objects.all():
-            pforms.append(PositionForm(pos, request.POST, prefix="pos_%d" % pos.id))
+            pforms.append(PositionForm(request.POST, prefix="pos_%d" % pos.id))
         for form in pforms:
-            if form.is_valid() == False:
-                raise str(form.changed_data)
+            if form.is_valid():
                 for candidate in form.cleaned_data:
                     selected_candidate = Candidates.object.get(id = \
                     int(candidate))
@@ -25,5 +24,7 @@ def vote(request):
     else:
         pforms = [] 
         for pos in Position.objects.all():
-            pforms.append(PositionForm(pos, prefix="pos_%d" % pos.id))
+            pforms.append(PositionForm(pos.candidate_set.order_by('inital').\
+                order_by('first_name').order_by('last_name').all(), \
+                prefix="pos_%d" % pos.id))
         return render_to_response('vote.html', {'position_forms': pforms}) 
