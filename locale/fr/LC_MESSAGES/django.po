@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: alpha\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-21 10:54-0400\n"
+"POT-Creation-Date: 2008-11-30 15:52-0500\n"
 "PO-Revision-Date: 2008-10-20 17:58-0400\n"
-"Last-Translator: FULL NAME <ryanakca@kubuntu.org\n"
+"Last-Translator: Ryan Kavanagh <ryanakca@kubuntu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -22,74 +22,83 @@ msgstr "Anglais"
 msgid "French"
 msgstr "Français"
 
-#: template_dir/results/index.html:4 template_dir/results/index.html.py:8
+#: template_dir/vote.html:29
+msgid "Select "
+msgstr "Selectionnez "
+
+#: template_dir/results/index.html:22 template_dir/results/index.html.py:26
 msgid "Election Results"
 msgstr "Résultats des élections"
 
-#: template_dir/results/index.html:15 voting/models.py:68
+#: template_dir/results/index.html:33 voting/models.py:85
 msgid "Position"
 msgstr "Poste"
 
-#: template_dir/results/index.html:16 voting/models.py:90
+#: template_dir/results/index.html:34 voting/models.py:107
 msgid "Candidate"
 msgstr "Candidat(e)"
 
-#: template_dir/results/index.html:17
+#: template_dir/results/index.html:35
 msgid "Votes"
 msgstr "Votes"
 
-#: template_dir/results/index.html:42
+#: template_dir/results/index.html:60
 msgid "No positions have been created."
 msgstr "Aucun poste existe"
 
-#: voting/models.py:13
+#: voting/forms.py:44
+#, python-format
+msgid "Selected too many candidates. Select %d instead"
+msgstr "Trops de candidats ont été choisis. S.V.P. n'en choisir que %d"
+
+#: voting/models.py:30
 msgid "UUID"
 msgstr "UUID"
 
-#: voting/models.py:14
+#: voting/models.py:31
 msgid "Has voted?"
 msgstr "A voté?"
 
-#: voting/models.py:20
+#: voting/models.py:37
 msgid "Voter"
 msgstr "Voteur"
 
-#: voting/models.py:21
+#: voting/models.py:38
 msgid "Voters"
 msgstr "Voteurs"
 
-#: voting/models.py:29
+#: voting/models.py:46
 msgid "Group name"
 msgstr "Nom du groupe"
 
-#: voting/models.py:31
+#: voting/models.py:48
 msgid "Percent of a vote this group can cast"
 msgstr "Pourcentage d'un vote que ce groupe représente "
 
-#: voting/models.py:44
+#: voting/models.py:61
 msgid "Create voters"
 msgstr "Crée des voteurs"
 
-#: voting/models.py:47
+#: voting/models.py:64
 msgid "Voter group"
-msgstr ""
+msgstr "Groupe de voteurs"
 
-#: voting/models.py:48
+#: voting/models.py:65
 msgid "Voter groups"
-msgstr ""
+msgstr "Groupes de voteurs"
 
-#: voting/models.py:57
+#: voting/models.py:74
 msgid "Amount of electees required to fill this position"
 msgstr "Nombre d'élus requis pour ce poste"
 
-#: voting/models.py:60
+#: voting/models.py:77
 msgid "Location of this field on the voter's balot"
 msgstr "Lieu de ce poste sur le bulletin de vote"
 
-#: voting/models.py:69
+#: voting/models.py:86
 msgid "Positions"
 msgstr "Postes"
 
-#: voting/models.py:91
+#: voting/models.py:108
 msgid "Candidates"
 msgstr "Candidat(e)s"
