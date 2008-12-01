@@ -21,12 +21,8 @@ from django.utils.translation import ugettext_lazy as _
 
 class PositionForm(forms.ModelForm):
     candidate_set = forms.ModelMultipleChoiceField(
-            Candidate.objects.all(),
+            Position.objects.all(),
             widget = forms.CheckboxSelectMultiple())
-
-    class Meta:
-        model = Position
-        fields = ('candidate_set')
 
     def __init__(self, *args, **kwargs):
         super(PositionForm, self).__init__(*args, **kwargs)
@@ -43,3 +39,7 @@ class PositionForm(forms.ModelForm):
         else:
             raise forms.ValidationError(_("Selected too many candidates. "
                 "Select %d instead" % self.amount_of_electees))
+    class Meta:
+        model = Position
+        # fields = ('candidate_set')
+        exclude = ('amount_of_electees', 'name', 'weight')
