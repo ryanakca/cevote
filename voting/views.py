@@ -32,13 +32,14 @@ def vote(request):
     PositionFormset = modelformset_factory(PositionModel,
             form=My_PositionForm, fields=('candidate_set'))
     if request.method == "POST":
-        formset = PositionFormset(request.POST)
+        formset = PositionFormset(data=request.POST)
         if formset.is_valid():
             instances = formset.save(commit=False)
             for Position in instances:
-                for candidate in Position.cleaned_data:
-                    candidate.votes += 1
-                    candidate.save()
+                for candidate in Position.cleaned_data['candidate_set']:
+                    cand = Candidate.objects.get(id = int(candidate))
+                    cand.votes += 1
+                    cand.save()
             HttpResponse(_("Your vote has been successfully submitted."))
     else:
         forms = PositionFormset()
