@@ -1,0 +1,5 @@
+This program is licensed under the AGPL version 3, see file headers for details.
+
+The SelectCandidateWidget is an AGPLv3 derivative of Django's
+SelectCheckboxMultiple, which was originally licensed under a BSD-style license.
+See the header of voting/SelectCandidateWidget.py for details.

@@ -18,11 +18,12 @@
 from django import forms
 from models import Position, Candidate
 from django.utils.translation import ugettext_lazy as _
+from SelectCandidateWidget import SelectCandidateWidget
 
 class PositionForm(forms.ModelForm):
     candidate_set = forms.ModelMultipleChoiceField(
             Candidate.objects.all(),
-            widget = forms.CheckboxSelectMultiple())
+            widget = SelectCandidateWidget)
 
     def __init__(self, *args, **kwargs):
         super(PositionForm, self).__init__(*args, **kwargs)
