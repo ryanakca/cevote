@@ -74,23 +74,20 @@ class SelectCandidateWidget(forms.CheckboxSelectMultiple):
             if has_id:
                 final_attrs = dict(final_attrs, id='%s_%s' % (attrs['id'], i))
                 label_for = u' for="%s"' % final_attrs['id']
-                #if final_attrs['picture']:
-                #    pictureurl = final_attrs['picture'].url
-                #else:
-                #    pictureurl = ''
             else:
                 label_for = ''
-
+            # Does the candidate have a picture?
+            if self.choices.queryset.get(pk=option_value).picture:
+                pictureurl = unicode(self.choices.queryset.get(pk=option_value).picture.url)
+            else:
+                pictureurl = ''
             cb = CheckboxInput(final_attrs, check_test=lambda value: value in str_values)
             option_value = force_unicode(option_value)
             rendered_cb = cb.render(name, option_value)
             option_label = conditional_escape(force_unicode(option_label))
-            output.append(u'<li class="nobullet"><label%s>%s %s</label></li>' %\
-                         (label_for, rendered_cb, option_label))
-
-            #output.append(u'<li class="nobullet"><label%s>%s %s</label><img '\
-            #               'src="%s" /></li>' % (label_for, rendered_cb,
-            #                                     option_label, pictureurl))
+            output.append(u'<li class="nobullet"><label%s>%s %s</label><img '\
+                           'src="%s" /></li>' % (label_for, rendered_cb,
+                                                 option_label, pictureurl))
         output.append(u'</ul>')
         return mark_safe(u'\n'.join(output))
 
