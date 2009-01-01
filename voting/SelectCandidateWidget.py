@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-# This program is a derivative of Django's CheckboxSelectMultiple. The original
-# work was licensed under the following license:
+# The SelectCandidateWidget is a derivative of Django's CheckboxSelectMultiple.
+# The original work was licensed under the following license:
 ##  
 ## Copyright (c) Django Software Foundation and individual contributors.
 ## All rights reserved.
@@ -49,12 +49,18 @@
 ## 
 
 from django import forms
+from django.forms.widgets import CheckboxInput
+from django.forms.fields import Field
+from django.utils.encoding import force_unicode
+from django.utils.html import conditional_escape
+from django.utils.safestring import mark_safe
+from itertools import chain
 
 class SelectCandidateWidget(forms.CheckboxSelectMultiple):
     """ A widget that allows voters to select a candidate. It display's the
         Candidate's name and picture side by side in a <p>
     """
-
+    
     def render(self, name, value, attrs=None, choices=()):
         if value is None: value = []
         has_id = attrs and 'id' in attrs
@@ -62,12 +68,16 @@ class SelectCandidateWidget(forms.CheckboxSelectMultiple):
         output = [u'<ul>']
         # Normalize to strings
         str_values = set([force_unicode(v) for v in value])
-        for i, (option_value, option_label) in enumerate(forms.chain(self.choices, choices)):
+        for i, (option_value, option_label) in enumerate(chain(self.choices, choices)):
             # If an ID attribute was given, add a numeric index as a suffix,
             # so that the checkboxes don't all have the same ID attribute.
             if has_id:
                 final_attrs = dict(final_attrs, id='%s_%s' % (attrs['id'], i))
                 label_for = u' for="%s"' % final_attrs['id']
+                #if final_attrs['picture']:
+                #    pictureurl = final_attrs['picture'].url
+                #else:
+                #    pictureurl = ''
             else:
                 label_for = ''
 
@@ -75,9 +85,12 @@ class SelectCandidateWidget(forms.CheckboxSelectMultiple):
             option_value = force_unicode(option_value)
             rendered_cb = cb.render(name, option_value)
             option_label = conditional_escape(force_unicode(option_label))
-            picture = attrs['id']
-            output.append(u"<li><label%s>%s %s</label><img src='%s' class='cand_picture'</li>" % \
-                (label_for, rendered_cb, option_label, picture))
+            output.append(u'<li class="nobullet"><label%s>%s %s</label></li>' %\
+                         (label_for, rendered_cb, option_label))
+
+            #output.append(u'<li class="nobullet"><label%s>%s %s</label><img '\
+            #               'src="%s" /></li>' % (label_for, rendered_cb,
+            #                                     option_label, pictureurl))
         output.append(u'</ul>')
         return mark_safe(u'\n'.join(output))
 
