@@ -1,5 +1,5 @@
 # Views for the voting application.
-# Copyright (C) 2008  Ryan Kavanagh <ryanakca@kubuntu.org>
+# Copyright (C) 2008, 2009  Ryan Kavanagh <ryanakca@kubuntu.org>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -19,6 +19,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.forms.models import modelformset_factory
+from django.views.generic.simple import direct_to_template
 
 # *Sigh*, why must I import Position as PositionModel?
 # If I don't, I get the following exception:
@@ -34,13 +35,14 @@ def vote(request):
     if request.method == "POST":
         formset = PositionFormset(data=request.POST)
         if formset.is_valid():
-            instances = formset.save(commit=False)
-            for Position in instances:
-                for candidate in Position.cleaned_data['candidate_set']:
-                    cand = Candidate.objects.get(id = int(candidate))
-                    cand.votes += 1
-                    cand.save()
-            HttpResponse(_("Your vote has been successfully submitted."))
+            for Position in formset.cleaned_data:
+                if Position.has_key('candidate_set'):
+                    for candidate in Position['candidate_set']:
+                        candidate.votes += 1
+                        candidate.save()
+            return HttpResponseRedirect('/success/')
+        else:
+            return render_to_response('vote.html', {'position_forms':formset})
     else:
         forms = PositionFormset()
         return render_to_response('vote.html', {'position_forms':forms})
