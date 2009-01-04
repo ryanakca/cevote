@@ -86,8 +86,8 @@ class SelectCandidateWidget(forms.CheckboxSelectMultiple):
             rendered_cb = cb.render(name, option_value)
             option_label = conditional_escape(force_unicode(option_label))
             output.append(u'<li class="nobullet"><label%s>%s %s</label><img '\
-                           'src="%s" /></li>' % (label_for, rendered_cb,
-                                                 option_label, pictureurl))
+                           'src="%s" class="candidate_picture" /></li>' %\
+                           (label_for, rendered_cb, option_label, pictureurl))
         output.append(u'</ul>')
         return mark_safe(u'\n'.join(output))
 

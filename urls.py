@@ -35,4 +35,7 @@ if settings.DEBUG:
     urlpatterns += patterns('',
         (r'^media_dir/(?P<path>.*)$', 'django.views.static.serve', \
             {'document_root': '/home/ryan/work/cevote/media_dir/'}),
+        (r'^candidate_pictures/(?P<path>.*)$', 'django.views.static.serve', \
+            {'document_root':
+            '/home/ryan/work/cevote/media_dir/candidate_pictures/'}),
     )
