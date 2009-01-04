@@ -1,6 +1,6 @@
 #
 # Forms for the voting application
-# Copyright (C) 2008  Ryan Kavanagh <ryanakca@kubuntu.org>
+# Copyright (C) 2008, 2009  Ryan Kavanagh <ryanakca@kubuntu.org>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -18,28 +18,30 @@
 from django import forms
 from models import Position, Candidate
 from django.utils.translation import ugettext_lazy as _
+from SelectCandidateWidget import SelectCandidateWidget
 
 class PositionForm(forms.ModelForm):
     candidate_set = forms.ModelMultipleChoiceField(
             Candidate.objects.all(),
-            widget = forms.CheckboxSelectMultiple())
-
-    class Meta:
-        model = Position
-        fields = ('candidate_set')
+            widget = SelectCandidateWidget)
 
     def __init__(self, *args, **kwargs):
         super(PositionForm, self).__init__(*args, **kwargs)
-        self.fields['candidate_set'].queryset = self.instance.candidate_set.all()
+        self.fields['candidate_set'].queryset =\
+                                self.instance.candidate_set.all()
         self.name = self.instance.name
         self.weight = self.instance.weight
         self.number = self.instance.amount_of_electees
 
     def clean(self):
-        candidates = self.cleaned_data.get('candidate_set')
-        if len(self.fields['candidates'].queryset) == \
-                (self.number - 1):
-            return cleaned_data
+        if self.cleaned_data.has_key('candidate_set') and \
+            (len(self.cleaned_data['candidate_set']) == self.number):
+            return self.cleaned_data
         else:
-            raise forms.ValidationError(_("Selected too many candidates. "
-                "Select %d instead" % self.amount_of_electees))
+            raise forms.ValidationError(_("Selected wrong number of "
+                "candidates. Select %d instead" % self.number))
+
+    class Meta:
+        model = Position
+        # fields = ('candidate_set')
+        exclude = ('amount_of_electees', 'name', 'weight')

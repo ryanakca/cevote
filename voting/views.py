@@ -1,5 +1,5 @@
 # Views for the voting application.
-# Copyright (C) 2008  Ryan Kavanagh <ryanakca@kubuntu.org>
+# Copyright (C) 2008, 2009  Ryan Kavanagh <ryanakca@kubuntu.org>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -19,31 +19,30 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.forms.models import modelformset_factory
+from django.views.generic.simple import direct_to_template
 
-from cevote.voting.models import Candidate, Position
-from cevote.voting.forms import PositionForm
+# *Sigh*, why must I import Position as PositionModel?
+# If I don't, I get the following exception:
+# local variable 'Position' referenced before assignment
+from cevote.voting.models import Position as PositionModel
+from cevote.voting.forms import PositionForm as My_PositionForm
 
 def vote(request):
+    # We must specify the fields since there's a bug in Drupal that causes
+    # modelformset_factory to ignore the Meta class in forms
+    PositionFormset = modelformset_factory(PositionModel,
+            form=My_PositionForm, fields=('candidate_set'))
     if request.method == "POST":
-        PositonFormset = modelformset_factory(Position, form=PositionForm)
-#        pforms = []
-#        for pos in Position.objects.all():
-#            pforms.append(PositionForm(request.POST, prefix="pos_%d" % pos.id))
-#        for form in pforms:
-#            if form.is_valid():
-#                for candidate in form.cleaned_data:
-#                    selected_candidate = Candidates.object.get(id = \
-#                    int(candidate))
-#                    selected_candidate.votes += 1
-#                    selected_candidate.save()
-#            else:
-#                HttpResponse(_("Your vote has been successfully submitted."))
+        formset = PositionFormset(data=request.POST)
+        if formset.is_valid():
+            for Position in formset.cleaned_data:
+                if Position.has_key('candidate_set'):
+                    for candidate in Position['candidate_set']:
+                        candidate.votes += 1
+                        candidate.save()
+            return HttpResponseRedirect('/success/')
+        else:
+            return render_to_response('vote.html', {'position_forms':formset})
     else:
-        PositionFormset = modelformset_factory(Position, form=PositionForm)
-        
-#        pforms = [] 
-#        for pos in Position.objects.all():
-#            pforms.append(PositionForm(pos.candidate_set.order_by('inital').\
-#                order_by('first_name').order_by('last_name').all(), \
-#                prefix="pos_%d" % pos.id))
-#        return render_to_response('vote.html', {'position_forms': pforms}) 
+        forms = PositionFormset()
+        return render_to_response('vote.html', {'position_forms':forms})

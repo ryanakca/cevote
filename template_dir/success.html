@@ -1,7 +1,7 @@
 {% load i18n %}
 <html>
 <!--
-  * Voting template
+  * Successful vote template
   * Copyright (C) 2008, 2009  Ryan Kavanagh <ryanakca@kubuntu.org>
   *
   * This program is free software: you can redistribute it and/or modify
@@ -19,22 +19,10 @@
   *
 -->
     <head>
-        <title>{% trans "Vote" %}</title>
+        <title>{% trans "Success" %}</title>
     </head>
     <body>
-        <h1>{% trans "Vote" %}</h1>
-        {% if position_forms %}
-        <form action="." method="post">
-            <table border="1">
-            {{ position_forms.management_form }}
-            {% for PositionForm in position_forms.forms %}
-                {{ PositionForm.name }}
-                {% trans "Select" %} {{ position.number }} {% trans "candidates" %}
-                {{ PositionForm.as_ul }}
-            {% endfor %}
-            </table>
-            <input type="submit">
-        </form>
-        {% endif %}
+        <h1>{% trans "Success" %}</h1>
+            {% trans "Success, your votes have been submitted" %}
     </body>
 </html>

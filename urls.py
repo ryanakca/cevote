@@ -1,5 +1,5 @@
 # Django URL file.
-# Copyright (C) 2008  Ryan Kavanagh <ryanakca@kubuntu.org>
+# Copyright (C) 2008, 2009  Ryan Kavanagh <ryanakca@kubuntu.org>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 from django.conf.urls.defaults import *
-from cevote.voting.models import Position
+from django.views.generic.simple import direct_to_template
 
 # for the settings.DEBUG
 import settings
@@ -29,10 +29,14 @@ urlpatterns = patterns('',
     (r'^results/', include('cevote.results.urls')),
     (r'^i18n/', include('django.conf.urls.i18n')),
     (r'^$', include('cevote.voting.urls')),
+    (r'^success/$', direct_to_template, {'template': 'success.html'}),
 )
 
 if settings.DEBUG:
     urlpatterns += patterns('',
         (r'^media_dir/(?P<path>.*)$', 'django.views.static.serve', \
             {'document_root': '/home/ryan/work/cevote/media_dir/'}),
+        (r'^candidate_pictures/(?P<path>.*)$', 'django.views.static.serve', \
+            {'document_root':
+            '/home/ryan/work/cevote/media_dir/candidate_pictures/'}),
     )

@@ -19,6 +19,8 @@
 #
 
 import random
+import settings
+from voting.models import Position, Candidate
 
 def fill(candidates_per_group):
     Position(name="Président", amount_of_electees="1", weight="-10").save()
@@ -37,3 +39,6 @@ def fill(candidates_per_group):
                 last_name=random.choice(last_names),\
                 votes=random.randint(1,150),
                 position=p).save()
+
+if __name__ == "__main__":
+    fill(3)
