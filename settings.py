@@ -94,5 +94,11 @@ INSTALLED_APPS = (
     'cevote.results',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'cevote.voting.backends.VoterBackend',
+)
+
 # Printing options
 PRINT = {'PRINT_VOTES': False, 'PRINTER': 'ML-3051ND'}
+AUTH_PROFILE_MODULE = 'voting.Voter'

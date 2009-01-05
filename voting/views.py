@@ -14,13 +14,16 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+
 import os
+
 from django.shortcuts import get_object_or_404, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.forms.models import modelformset_factory
 from django.views.generic.simple import direct_to_template
+from django.contrib.auth.decorators import login_required
 
 # *Sigh*, why must I import Position as PositionModel?
 # If I don't, I get the following exception:
@@ -29,6 +32,7 @@ from cevote.voting.models import Position as PositionModel
 from cevote.voting.forms import PositionForm as My_PositionForm
 from cevote.settings import PRINT
 
+@login_required
 def vote(request):
     # We must specify the fields since there's a bug in Drupal that causes
     # modelformset_factory to ignore the Meta class in forms

@@ -16,7 +16,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 from django.db import models
-from django_extensions.db.fields import UUIDField
+from django.contrib.auth.models import User
+from voting.UUIDField import UUIDField
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext_lazy
 
@@ -29,6 +30,7 @@ class Voter(models.Model):
 
     uuid = UUIDField(_("UUID"),version=4)
     has_voted = models.BooleanField(_("Has voted?"),default=False)
+    user = models.ForeignKey(User,unique=True)
 
     def __unicode__(self):
         return self.uuid
