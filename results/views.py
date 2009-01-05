@@ -15,10 +15,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 from django.shortcuts import render_to_response
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from cevote.voting.models import Position
 
 @login_required
+@permission_required(lambda u: u.is_staff())
 def index(request):
     candidate_position_dict = {}
     for pos in Position.objects.all():
