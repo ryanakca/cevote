@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: alpha\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-30 15:52-0500\n"
+"POT-Creation-Date: 2009-01-04 19:24-0500\n"
 "PO-Revision-Date: 2008-10-20 17:58-0400\n"
 "Last-Translator: Ryan Kavanagh <ryanakca@kubuntu.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,9 +22,25 @@ msgstr "Anglais"
 msgid "French"
 msgstr "Français"
 
-#: template_dir/vote.html:29
-msgid "Select "
+#: template_dir/success.html:22 template_dir/success.html.py:25
+msgid "Success"
+msgstr ""
+
+#: template_dir/success.html:26
+msgid "Success, your votes have been submitted"
+msgstr ""
+
+#: template_dir/vote.html:22 template_dir/vote.html.py:25
+msgid "Vote"
+msgstr "Vote"
+
+#: template_dir/vote.html:32
+msgid "Select"
 msgstr "Selectionnez "
+
+#: template_dir/vote.html:32
+msgid "candidates"
+msgstr "candidat(e)s"
 
 #: template_dir/results/index.html:22 template_dir/results/index.html.py:26
 msgid "Election Results"
@@ -46,9 +62,8 @@ msgstr "Votes"
 msgid "No positions have been created."
 msgstr "Aucun poste existe"
 
-#: voting/forms.py:44
-#, python-format
-msgid "Selected too many candidates. Select %d instead"
+#: voting/forms.py:41
+msgid "Selected wrong number of candidates. Select %d instead"
 msgstr "Trops de candidats ont été choisis. S.V.P. n'en choisir que %d"
 
 #: voting/models.py:30

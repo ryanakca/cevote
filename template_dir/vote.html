@@ -20,6 +20,8 @@
 -->
     <head>
         <title>{% trans "Vote" %}</title>
+            <link rel="stylesheet" href="/media_dir/vote.css"
+            type="text/css" />
     </head>
     <body>
         <h1>{% trans "Vote" %}</h1>
@@ -28,9 +30,9 @@
             <table border="1">
             {{ position_forms.management_form }}
             {% for PositionForm in position_forms.forms %}
-                {{ PositionForm.name }}
+                <h3> {{ PositionForm.name }} </h3>
                 {% trans "Select" %} {{ position.number }} {% trans "candidates" %}
-                {{ PositionForm.as_ul }}
+                {{ PositionForm.as_p }}
             {% endfor %}
             </table>
             <input type="submit">
