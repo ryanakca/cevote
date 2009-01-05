@@ -1,0 +1,36 @@
+{% load i18n %}
+<!--
+  * Login template
+  * Copyright (C) 2008, 2009  Ryan Kavanagh <ryanakca@kubuntu.org>
+  *
+  * This program is free software: you can redistribute it and/or modify
+  * it under the terms of the GNU Affero General Public License as published by
+  * the Free Software Foundation, either version 3 of the License, or
+  * (at your option) any later version.
+  *
+  * This program is distributed in the hope that it will be useful,
+  * but WITHOUT ANY WARRANTY; without even the implied warranty of
+  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  * GNU Affero General Public License for more details.
+  *
+  * You should have received a copy of the GNU Affero General Public License
+  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  *
+-->
+<html>
+
+{% if form.errors %}
+<p>{% trans Supplied username or password is invalid. Please try again. %}</p>
+{% endif %}
+
+<form method="post" action=".">
+<table>
+<tr><td>{{ form.username.label_tag }}</td><td>{{ form.username }}</td></tr>
+<tr><td>{{ form.password.label_tag }}</td><td>{{ form.password }}</td></tr>
+</table>
+
+<input type="submit" value="{% trans login %} " />
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+</html>

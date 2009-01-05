@@ -18,7 +18,7 @@ from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from cevote.voting.models import Position
 
-#@login_required
+@login_required
 def index(request):
     candidate_position_dict = {}
     for pos in Position.objects.all():

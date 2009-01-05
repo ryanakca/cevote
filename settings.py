@@ -93,3 +93,6 @@ INSTALLED_APPS = (
     'cevote.voting',
     'cevote.results',
 )
+
+# Printing options
+PRINT = {'PRINT_VOTES': False, 'PRINTER': 'ML-3051ND'}

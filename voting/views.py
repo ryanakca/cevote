@@ -14,6 +14,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+import os
 from django.shortcuts import get_object_or_404, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -26,6 +27,7 @@ from django.views.generic.simple import direct_to_template
 # local variable 'Position' referenced before assignment
 from cevote.voting.models import Position as PositionModel
 from cevote.voting.forms import PositionForm as My_PositionForm
+from cevote.settings import PRINT
 
 def vote(request):
     # We must specify the fields since there's a bug in Drupal that causes
@@ -35,11 +37,19 @@ def vote(request):
     if request.method == "POST":
         formset = PositionFormset(data=request.POST)
         if formset.is_valid():
+            print_list = []
             for Position in formset.cleaned_data:
                 if Position.has_key('candidate_set'):
                     for candidate in Position['candidate_set']:
                         candidate.votes += 1
                         candidate.save()
+                    print_list.append(str((PositionModel.objects.get(id= \
+                        Position['id']),
+                        Position['candidate_set'])))
+            if PRINT['PRINT_VOTES']:
+                print_data = '\n'.join(print_list)
+                fd = os.popen("lp -d %s" % PRINT['PRINTER'], "wb")
+                fd.write(print_data)
             return HttpResponseRedirect('/success/')
         else:
             return render_to_response('vote.html', {'position_forms':formset})

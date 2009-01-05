@@ -3,3 +3,6 @@ This program is licensed under the AGPL version 3, see file headers for details.
 The SelectCandidateWidget is an AGPLv3 derivative of Django's
 SelectCheckboxMultiple, which was originally licensed under a BSD-style license.
 See the header of voting/SelectCandidateWidget.py for details.
+
+To enable the printing of votes, add the following to your settings.py
+PRINT = {'PRINT_VOTES': True, 'PRINTER': 'Your_Printer'}
