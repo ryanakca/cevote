@@ -14,13 +14,20 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+from django.contrib.auth.models import User
 from cevote.voting.models import Voter
 
-class VoterBackend():
+class VoterBackend:
     """ Authenticatin Backend for the Voter Model. """
     def authenticate(self, uuid=None):
-        voter = User.objects.get(uuid=uuid)
+        voter = Voter.objects.get(uuid=uuid)
         if not voter.has_voted:
             return voter.user
         else:
             raise User.DoesNotExist
+
+    def get_user(self, user_id):
+        try:
+            return User.objects.get(pk=user_id)
+        except User.DoesNotExist:
+            return None

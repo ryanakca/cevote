@@ -28,9 +28,9 @@ urlpatterns = patterns('',
     (r'^admin/(.*)', admin.site.root),
     (r'^results/', include('cevote.results.urls')),
     (r'^i18n/', include('django.conf.urls.i18n')),
-    (r'^$', include('cevote.voting.urls')),
     (r'^success/$', direct_to_template, {'template': 'success.html'}),
     (r'^accounts/login/$', 'django.contrib.auth.views.login'),
+    (r'^vote/', include('cevote.voting.urls')),
 )
 
 if settings.DEBUG:

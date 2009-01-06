@@ -23,7 +23,8 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.forms.models import modelformset_factory
 from django.views.generic.simple import direct_to_template
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth import authenticate, login as django_login
 
 # *Sigh*, why must I import Position as PositionModel?
 # If I don't, I get the following exception:
@@ -32,7 +33,7 @@ from cevote.voting.models import Position as PositionModel
 from cevote.voting.forms import PositionForm as My_PositionForm
 from cevote.settings import PRINT
 
-@login_required
+@user_passes_test(lambda u: u.is_authenticated(), login_url='/vote/login.html')
 def vote(request):
     # We must specify the fields since there's a bug in Drupal that causes
     # modelformset_factory to ignore the Meta class in forms
@@ -60,3 +61,22 @@ def vote(request):
     else:
         forms = PositionFormset()
         return render_to_response('vote.html', {'position_forms':forms})
+
+def login(request):
+    if request.POST.has_key('uuid'):
+        uuid = request.POST['uuid']
+        user = authenticate(uuid=uuid)
+        if user is not None:
+            if user.is_active:
+                django_login(request, user)
+                return HttpResponseRedirect('/vote/')
+            else:
+                return render_to_response('vote/login.html',
+                        {'uuid': uuid,
+                         'error_msg': _("UUID Disabled.")})
+        else:
+            return render_to_response('vote/login.html',
+                    {'uuid': uuid,
+                     'error_msg': _("Invalid UUID or UUID has already voted")})
+    else:
+        return render_to_response('vote/login.html')
