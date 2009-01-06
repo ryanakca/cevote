@@ -22,23 +22,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext_lazy
 
 # Create your models here.
-class Voter(models.Model):
-    """ This class represents voters. Each voter is identified by a UUID and can
-    be part of multiple groups. The boolean has_voted provides a mechanism to
-    provide the voter from voting twice.
-    """
-
-    uuid = UUIDField(_("UUID"),version=4)
-    has_voted = models.BooleanField(_("Has voted?"),default=False)
-    user = models.ForeignKey(User,unique=True)
-
-    def __unicode__(self):
-        return self.uuid
-
-    class Meta:
-        verbose_name = _("Voter")
-        verbose_name_plural = _("Voters")
-
 class Group(models.Model):
     """ This class represents a group of Voters. Each group has a name and can
     vote for certain positions. Certain groups can only cast half a vote. We'll
@@ -46,7 +29,6 @@ class Group(models.Model):
     """
 
     name = models.CharField(_("Group name"), max_length=200)
-    voters = models.ManyToManyField(Voter)
     vote_percentage = models.IntegerField(_("Percent of a vote this group " \
         "can cast"), default=1.00)
 
@@ -65,6 +47,24 @@ class Group(models.Model):
     class Meta:
         verbose_name = _("Voter group")
         verbose_name_plural = _("Voter groups")
+
+class Voter(models.Model):
+    """ This class represents voters. Each voter is identified by a UUID and can
+    be part of multiple groups. The boolean has_voted provides a mechanism to
+    provide the voter from voting twice.
+    """
+
+    uuid = UUIDField(_("UUID"),version=4)
+    has_voted = models.BooleanField(_("Has voted?"),default=False)
+    user = models.ForeignKey(User,unique=True)
+    group = models.ForeignKey(Group,unique=True)
+
+    def __unicode__(self):
+        return self.uuid
+
+    class Meta:
+        verbose_name = _("Voter")
+        verbose_name_plural = _("Voters")
 
 class Position(models.Model):
     """ This class represents a position. It has a name and the required
