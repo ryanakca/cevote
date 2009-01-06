@@ -37,14 +37,15 @@ from cevote.settings import PRINT
 @user_passes_test(lambda u: u.is_authenticated(), login_url='/vote/login/')
 def vote(request):
     # Getting the user data from profile
-    vote_percentage = request.user.get_profile().group.vote_percentage
     group = request.user.get_profile().group
-    positions = PositionModel.objects.filter(voting_groups=group)
+    positions = \
+        PositionModel.objects.filter(voting_groups=group).order_by('weight')
     # We must specify the fields since there's a bug in Drupal that causes
     # modelformset_factory to ignore the Meta class in forms
     PositionFormset = modelformset_factory(PositionModel,
             form=My_PositionForm, fields=('candidate_set'))
     if request.method == "POST":
+        vote_percentage = request.user.get_profile().group.vote_percentage
         formset = PositionFormset(data=request.POST, queryset=positions)
         if formset.is_valid():
             print_list = []
