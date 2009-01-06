@@ -25,6 +25,7 @@ from django.forms.models import modelformset_factory
 from django.views.generic.simple import direct_to_template
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import authenticate, logout, login as django_login
+from django.contrib.auth.models import User
 
 # *Sigh*, why must I import Position as PositionModel?
 # If I don't, I get the following exception:
@@ -59,6 +60,9 @@ def vote(request):
                 print_data = '\n'.join(print_list)
                 fd = os.popen("lp -d %s" % PRINT['PRINTER'], "wb")
                 fd.write(print_data)
+            # Set the UUID as used.
+            request.user.get_profile().has_voted = True
+            request.user.get_profile().save()
             return HttpResponseRedirect('/vote/success/')
         else:
             return render_to_response('vote.html', {'position_forms':formset})
@@ -67,20 +71,25 @@ def vote(request):
         return render_to_response('vote.html', {'position_forms':forms})
 
 def login(request):
+    def _render_error(uuid, message):
+        return render_to_response('vote/login.html', {'uuid': uuid,
+                 'error_msg': _(message)})
+
     if request.POST.has_key('uuid'):
         uuid = request.POST['uuid']
-        user = authenticate(uuid=uuid)
-        if user is not None:
-            if user.is_active:
-                django_login(request, user)
-                return HttpResponseRedirect('/vote/')
+        try:
+            user = authenticate(uuid=uuid)
+            if user is not None:
+                if user.is_active:
+                    django_login(request, user)
+                    return HttpResponseRedirect('/vote/')
+                else:
+                    return _render_error(uuid, "UUID Disabled.")
             else:
-                return render_to_response('vote/login.html',
-                        {'uuid': uuid,
-                         'error_msg': _("UUID Disabled.")})
-        else:
-            return render_to_response('vote/login.html',
-                    {'uuid': uuid,
-                     'error_msg': _("Invalid UUID or UUID has already voted")})
+                return _render_error(uuid,
+                        "Invalid UUID or UUID has already voted.")
+        except User.DoesNotExist:
+            return _render_error(uuid,
+                        "Invalid UUID or UUID has already voted.")
     else:
         return render_to_response('vote/login.html')

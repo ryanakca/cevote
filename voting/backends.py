@@ -20,11 +20,14 @@ from cevote.voting.models import Voter
 class VoterBackend:
     """ Authenticatin Backend for the Voter Model. """
     def authenticate(self, uuid=None):
-        voter = Voter.objects.get(uuid=uuid)
-        if not voter.has_voted:
-            return voter.user
-        else:
-            raise User.DoesNotExist
+        try:
+            voter = Voter.objects.get(uuid=uuid)
+            if not voter.has_voted:
+                return voter.user
+            else:
+                raise User.DoesNotExist
+        except Voter.DoesNotExist:
+            return None
 
     def get_user(self, user_id):
         try:
