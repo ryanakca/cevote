@@ -20,3 +20,8 @@ urlpatterns = patterns('cevote.voting.views',
     (r'^$', 'vote'),
     (r'^login/$', 'login'),
 )
+
+urlpatterns += patterns('',
+    (r'^success/$', 'django.contrib.auth.views.logout',
+                    {'template_name': 'vote/success.html'})
+)

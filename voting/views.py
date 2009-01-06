@@ -24,7 +24,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.forms.models import modelformset_factory
 from django.views.generic.simple import direct_to_template
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.contrib.auth import authenticate, login as django_login
+from django.contrib.auth import authenticate, logout, login as django_login
 
 # *Sigh*, why must I import Position as PositionModel?
 # If I don't, I get the following exception:
@@ -33,7 +33,7 @@ from cevote.voting.models import Position as PositionModel
 from cevote.voting.forms import PositionForm as My_PositionForm
 from cevote.settings import PRINT
 
-@user_passes_test(lambda u: u.is_authenticated(), login_url='/vote/login.html')
+@user_passes_test(lambda u: u.is_authenticated(), login_url='/vote/login/')
 def vote(request):
     # We must specify the fields since there's a bug in Drupal that causes
     # modelformset_factory to ignore the Meta class in forms
@@ -55,7 +55,7 @@ def vote(request):
                 print_data = '\n'.join(print_list)
                 fd = os.popen("lp -d %s" % PRINT['PRINTER'], "wb")
                 fd.write(print_data)
-            return HttpResponseRedirect('/success/')
+            return HttpResponseRedirect('/vote/success/')
         else:
             return render_to_response('vote.html', {'position_forms':formset})
     else:
