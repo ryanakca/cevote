@@ -52,7 +52,10 @@ def vote(request):
             for Position in formset.cleaned_data:
                 if Position.has_key('candidate_set'):
                     for candidate in Position['candidate_set']:
-                        candidate.votes += 1 * vote_percentage
+                        # We must devide the vote_percentage by 100 since it's
+                        # an integer between 0 and 100, and we want to cast a
+                        # percent of a vote (half a vote, a whole vote, etc)
+                        candidate.votes += 1 * (vote_percentage / 100)
                         candidate.save()
                     print_list.append(str((PositionModel.objects.get(id= \
                         Position['id']),
