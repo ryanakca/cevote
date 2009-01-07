@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load linecount %}
 <html>
 <!--
   * Voting template
@@ -27,12 +28,19 @@
         <h1>{% trans "Vote" %}</h1>
         {% if position_forms %}
         <form action="." method="post">
-            <table border="1">
             {{ position_forms.management_form }}
+            <table border="1">
+            <tr>
+               <th>{% trans "Position" %}</th>
+               <th colspan="2">{% trans "Candidates" %}</th>
+            </tr>
             {% for PositionForm in position_forms.forms %}
-                <h3> {{ PositionForm.name }} </h3>
-                {% trans "Select" %} {{ position.number }} {% trans "candidates" %}
-                {{ PositionForm.as_p }}
+            <tr>
+                <td rowspan="{{ PositionForm.as_table|linecount|add:"2"  }}" > {{ PositionForm.name }} </td>
+                <td colspan="2">
+{% trans "Please select" %} {{ PositionForm.number }} {% trans "candidate" %}{{ PositionForm.number|pluralize }} {% trans "from each set below" %}</td>
+            </tr>
+            {{ PositionForm.as_table }}
             {% endfor %}
             </table>
             <input type="submit">
