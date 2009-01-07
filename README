@@ -2,7 +2,22 @@ This program is licensed under the AGPL version 3, see file headers for details.
 
 The SelectCandidateWidget is an AGPLv3 derivative of Django's
 SelectCheckboxMultiple, which was originally licensed under a BSD-style license.
-See the header of voting/SelectCandidateWidget.py for details.
+See the header of vote/SelectCandidateWidget.py for details.
 
-To enable the printing of votes, add the following to your settings.py
-PRINT = {'PRINT_VOTES': True, 'PRINTER': 'Your_Printer'}
+To install with symbolic links:
+ 1. Symbolic link to the contents of vote/media, from the root of your MEDIA_DIR. 
+ 2. Symbolic link to the contents of vote/templates, from the root of your
+    TEMPLATE_DIR
+ 3. Add 'from vote.settings import *' to your site's settings.py
+ 4. Add the following line to urlpatterns your site's urls.py:
+    (r'^accounts/login/$', 'django.contrib.auth.views.login'),
+
+To install by copying:
+ 1. Copy the contents of vote/media/ to the root of your MEDIA_DIR.
+ 2. Copy the contents of vote/templates/ to the root of your TEMPLATE_DIR
+ 3. Add 'from vote.settings import *' to your site's settings.py
+ 4. Add the following line to urlpatterns your site's urls.py:
+    (r'^accounts/login/$', 'django.contrib.auth.views.login'),
+
+
+See comments in vote.settings for settings documentation.

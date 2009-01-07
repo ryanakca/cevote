@@ -1,5 +1,5 @@
-# URL file for the results
-# Copyright (C) 2008  Ryan Kavanagh <ryanakca@kubuntu.org>
+# Voting URL file.
+# Copyright (C) 2008, 2009  Ryan Kavanagh <ryanakca@kubuntu.org>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -16,6 +16,22 @@
 #
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('cevote.results.views',
-    (r'^$', 'index'),
+from cevote import settings
+
+urlpatterns = patterns('vote.views',
+    (r'^$', 'vote'),
+    (r'^login/$', 'login'),
+    (r'^results/$', 'results'),
 )
+
+urlpatterns += patterns('',
+    (r'^success/$', 'django.contrib.auth.views.logout',
+                    {'template_name': 'vote/success.html'})
+)
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^candidate_pictures/(?P<path>.*)$', 'django.views.static.serve', \
+            {'document_root':
+            '/home/ryan/work/cevote/media_dir/vote/candidate_pictures/'}),
+    )

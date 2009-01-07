@@ -1,6 +1,6 @@
 #
 # Widgets for the voting application's form
-# Copyright (C) 2008  Ryan Kavanagh <ryanakca@kubuntu.org>
+# Copyright (C) 2008, 2009  Ryan Kavanagh <ryanakca@kubuntu.org>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by

@@ -1,5 +1,5 @@
 # View for the results
-# Copyright (C) 2008  Ryan Kavanagh <ryanakca@kubuntu.org>
+# Copyright (C) 2008, 2009  Ryan Kavanagh <ryanakca@kubuntu.org>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -16,7 +16,7 @@
 #
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required, permission_required
-from cevote.voting.models import Position
+from vote.models import Position
 
 @login_required
 @permission_required(lambda u: u.is_staff())

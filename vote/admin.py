@@ -1,5 +1,5 @@
-# Voting URL file.
-# Copyright (C) 2008  Ryan Kavanagh <ryanakca@kubuntu.org>
+# Classes for the administrative interface
+# Copyright (C) 2008, 2009  Ryan Kavanagh <ryanakca@kubuntu.org>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -14,14 +14,21 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-from django.conf.urls.defaults import *
+from vote.models import Candidate, Position, Voter, Group
+from django.contrib import admin
 
-urlpatterns = patterns('cevote.voting.views',
-    (r'^$', 'vote'),
-    (r'^login/$', 'login'),
-)
+class CandidateAdmin(admin.ModelAdmin):
+    pass
 
-urlpatterns += patterns('',
-    (r'^success/$', 'django.contrib.auth.views.logout',
-                    {'template_name': 'vote/success.html'})
-)
+class CandidateInline(admin.StackedInline):
+    model = Candidate
+    exclude = ['votes',]
+    extra = 4
+
+class PositionAdmin(admin.ModelAdmin):
+    inlines = [CandidateInline,]
+
+admin.site.register(Position, PositionAdmin)
+admin.site.register(Candidate, CandidateAdmin)
+admin.site.register(Group)
+admin.site.register(Voter)

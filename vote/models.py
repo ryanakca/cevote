@@ -1,6 +1,6 @@
 #
 # Models used for the voting application
-# Copyright (C) 2008  Ryan Kavanagh <ryanakca@kubuntu.org>
+# Copyright (C) 2008, 2009  Ryan Kavanagh <ryanakca@kubuntu.org>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -17,9 +17,8 @@
 #
 from django.db import models
 from django.contrib.auth.models import User
-from voting.UUIDField import UUIDField
 from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext_lazy
+from vote.UUIDField import UUIDField
 
 # Create your models here.
 class Group(models.Model):
@@ -30,7 +29,7 @@ class Group(models.Model):
 
     name = models.CharField(_("Group name"), max_length=200)
     vote_percentage = models.IntegerField(_("Percent of a vote this group " \
-        "can cast"), default=1.00)
+        "can cast"), default=100.0)
 
     def __unicode__(self):
         return self.name
@@ -57,7 +56,7 @@ class Voter(models.Model):
     uuid = UUIDField(_("UUID"),version=4)
     has_voted = models.BooleanField(_("Has voted?"),default=False)
     user = models.ForeignKey(User,unique=True)
-    group = models.ForeignKey(Group,unique=True)
+    group = models.ForeignKey(Group)
 
     def __unicode__(self):
         return self.uuid

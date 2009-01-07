@@ -16,9 +16,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 from django import forms
-from models import Position, Candidate
 from django.utils.translation import ugettext_lazy as _
-from SelectCandidateWidget import SelectCandidateWidget
+from vote.models import Position, Candidate
+from vote.SelectCandidateWidget import SelectCandidateWidget
 
 class PositionForm(forms.ModelForm):
     candidate_set = forms.ModelMultipleChoiceField(
