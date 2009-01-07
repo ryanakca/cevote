@@ -19,5 +19,7 @@ To install by copying:
  4. Add the following line to urlpatterns your site's urls.py:
     (r'^accounts/login/$', 'django.contrib.auth.views.login'),
 
+To compile translations, run:
+django-admin.py compilemessages
 
 See comments in vote.settings for settings documentation.

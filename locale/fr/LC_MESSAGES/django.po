@@ -7,113 +7,123 @@ msgid ""
 msgstr ""
 "Project-Id-Version: alpha\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-04 19:24-0500\n"
-"PO-Revision-Date: 2008-10-20 17:58-0400\n"
+"POT-Creation-Date: 2009-01-07 15:18-0500\n"
+"PO-Revision-Date: 22009-01-07 15:26-0500\n"
 "Last-Translator: Ryan Kavanagh <ryanakca@kubuntu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: settings.py:30
+#: settings.py:31
 msgid "English"
 msgstr "Anglais"
 
-#: settings.py:31
+#: settings.py:32
 msgid "French"
 msgstr "Français"
 
-#: template_dir/success.html:22 template_dir/success.html.py:25
-msgid "Success"
-msgstr ""
-
-#: template_dir/success.html:26
-msgid "Success, your votes have been submitted"
-msgstr ""
-
-#: template_dir/vote.html:22 template_dir/vote.html.py:25
+#: template_dir/vote.html:22 template_dir/vote.html.py:27
+#: vote/templates/vote.html:22 vote/templates/vote.html.py:27
 msgid "Vote"
 msgstr "Vote"
 
-#: template_dir/vote.html:32
+#: template_dir/vote.html:34 vote/templates/vote.html:34
 msgid "Select"
 msgstr "Selectionnez "
 
-#: template_dir/vote.html:32
-msgid "candidates"
-msgstr "candidat(e)s"
+#: template_dir/vote.html:34 vote/templates/vote.html:34
+msgid "candidate"
+msgstr "candidat(e)"
 
-#: template_dir/results/index.html:22 template_dir/results/index.html.py:26
-msgid "Election Results"
-msgstr "Résultats des élections"
-
-#: template_dir/results/index.html:33 voting/models.py:85
-msgid "Position"
-msgstr "Poste"
-
-#: template_dir/results/index.html:34 voting/models.py:107
-msgid "Candidate"
-msgstr "Candidat(e)"
-
-#: template_dir/results/index.html:35
-msgid "Votes"
-msgstr "Votes"
-
-#: template_dir/results/index.html:60
-msgid "No positions have been created."
-msgstr "Aucun poste existe"
-
-#: voting/forms.py:41
+#: vote/forms.py:41
 msgid "Selected wrong number of candidates. Select %d instead"
 msgstr "Trops de candidats ont été choisis. S.V.P. n'en choisir que %d"
 
-#: voting/models.py:30
-msgid "UUID"
-msgstr "UUID"
-
-#: voting/models.py:31
-msgid "Has voted?"
-msgstr "A voté?"
-
-#: voting/models.py:37
-msgid "Voter"
-msgstr "Voteur"
-
-#: voting/models.py:38
-msgid "Voters"
-msgstr "Voteurs"
-
-#: voting/models.py:46
+#: vote/models.py:30
 msgid "Group name"
 msgstr "Nom du groupe"
 
-#: voting/models.py:48
+#: vote/models.py:31
 msgid "Percent of a vote this group can cast"
 msgstr "Pourcentage d'un vote que ce groupe représente "
 
-#: voting/models.py:61
+#: vote/models.py:44
 msgid "Create voters"
 msgstr "Crée des voteurs"
 
-#: voting/models.py:64
+#: vote/models.py:47
 msgid "Voter group"
 msgstr "Groupe de voteurs"
 
-#: voting/models.py:65
+#: vote/models.py:48
 msgid "Voter groups"
 msgstr "Groupes de voteurs"
 
-#: voting/models.py:74
+#: vote/models.py:56 vote/templates/vote/login.html:28
+msgid "UUID"
+msgstr "UUID"
+
+#: vote/models.py:57
+msgid "Has voted?"
+msgstr "A voté?"
+
+#: vote/models.py:65
+msgid "Voter"
+msgstr "Voteur"
+
+#: vote/models.py:66
+msgid "Voters"
+msgstr "Voteurs"
+
+#: vote/models.py:75
 msgid "Amount of electees required to fill this position"
 msgstr "Nombre d'élus requis pour ce poste"
 
-#: voting/models.py:77
+#: vote/models.py:78
 msgid "Location of this field on the voter's balot"
 msgstr "Lieu de ce poste sur le bulletin de vote"
 
-#: voting/models.py:86
+#: vote/models.py:86 vote/templates/vote/results.html:33
+msgid "Position"
+msgstr "Poste"
+
+#: vote/models.py:87
 msgid "Positions"
 msgstr "Postes"
 
-#: voting/models.py:108
+#: vote/models.py:108 vote/templates/vote/results.html:34
+msgid "Candidate"
+msgstr "Candidat(e)"
+
+#: vote/models.py:109
 msgid "Candidates"
 msgstr "Candidat(e)s"
+
+#: vote/templates/registration/login.html:23
+msgid "Supplied username or password is invalid. Please try again."
+msgstr "L'identifiant ou le mot de passe que vous avez supplié est invalide. \
+SVP vérifier vos authentifiants et réessayer de nouveau."
+
+#: vote/templates/registration/login.html:32 vote/templates/vote/login.html:31
+msgid "login"
+msgstr "Connexion"
+
+#: vote/templates/vote/results.html:22 vote/templates/vote/results.html:26
+msgid "Election Results"
+msgstr "Résultats des élections"
+
+#: vote/templates/vote/results.html:35
+msgid "Votes"
+msgstr "Votes"
+
+#: vote/templates/vote/results.html:60
+msgid "No positions have been created."
+msgstr "Aucun poste existe"
+
+#: vote/templates/vote/success.html:22 vote/templates/vote/success.html:25
+msgid "Success"
+msgstr "Succès"
+
+#: vote/templates/vote/success.html:26
+msgid "Success, your votes have been submitted. Logging out."
+msgstr "Succès, vos votes ont étés soumis. Fin des communications."
