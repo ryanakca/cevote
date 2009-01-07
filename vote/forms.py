@@ -39,7 +39,7 @@ class PositionForm(forms.ModelForm):
             return self.cleaned_data
         else:
             raise forms.ValidationError(_("Selected wrong number of "
-                "candidates. Select %d instead" % self.number))
+                "candidates. Select %d instead." % self.number))
 
     class Meta:
         model = Position

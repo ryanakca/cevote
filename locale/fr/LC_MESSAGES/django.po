@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: alpha\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-07 17:04-0500\n"
+"POT-Creation-Date: 2009-01-07 18:40-0500\n"
 "PO-Revision-Date: 22009-01-07 15:26-0500\n"
 "Last-Translator: Ryan Kavanagh <ryanakca@kubuntu.org>\n"
 "MIME-Version: 1.0\n"
@@ -42,16 +42,17 @@ msgstr "S.V.P. choisir"
 
 #: template_dir/vote.html:41 vote/templates/vote.html:41
 msgid "candidate"
-msgstr "candidat(e)"
+msgstr "candidat"
 
 #: template_dir/vote.html:41 vote/templates/vote.html:41
-msgid "from the set below"
-msgstr "de l'esemble ci-dessous"
+msgid "from each set below"
+msgstr "de l'ensemble ci-dessous"
 
 #: vote/forms.py:41
 #, python-format
-msgid "Selected wrong number of candidates. Select %d instead"
-msgstr "Trops de candidats ont été choisis. S.V.P. n'en choisir que %d"
+msgid "Selected wrong number of candidates. Select %d instead."
+msgstr ""
+"Un mauvais nombre de candidats ont été choisis. S.V.P. n'en choisir que %d"
 
 #: vote/models.py:30
 msgid "Group name"
@@ -103,7 +104,7 @@ msgstr "Postes"
 
 #: vote/models.py:108 vote/templates/vote/results.html:34
 msgid "Candidate"
-msgstr "Candidat(e)"
+msgstr "Candidat"
 
 #: vote/templates/registration/login.html:23
 msgid "Supplied username or password is invalid. Please try again."

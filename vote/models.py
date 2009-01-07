@@ -98,8 +98,8 @@ class Candidate(models.Model):
     initial = models.CharField(max_length=5)
     last_name = models.CharField(max_length=75)
     position = models.ForeignKey(Position)
-    picture = models.ImageField(upload_to='candidate_pictures', blank=True)
-    votes = models.IntegerField()
+    picture = models.ImageField(upload_to='vote/candidate_pictures', blank=True)
+    votes = models.FloatField(default=0)
 
     def __unicode__(self):
         return "%s, %s %s" % (self.last_name.upper(), self.first_name,  self.initial)
