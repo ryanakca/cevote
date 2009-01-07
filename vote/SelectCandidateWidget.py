@@ -65,7 +65,7 @@ class SelectCandidateWidget(forms.CheckboxSelectMultiple):
         if value is None: value = []
         has_id = attrs and 'id' in attrs
         final_attrs = self.build_attrs(attrs, name=name)
-        output = [u'<ul>']
+        output = []
         # Normalize to strings
         str_values = set([force_unicode(v) for v in value])
         for i, (option_value, option_label) in enumerate(chain(self.choices, choices)):
@@ -85,9 +85,10 @@ class SelectCandidateWidget(forms.CheckboxSelectMultiple):
             option_value = force_unicode(option_value)
             rendered_cb = cb.render(name, option_value)
             option_label = conditional_escape(force_unicode(option_label))
-            output.append(u'<li class="nobullet"><label%s>%s %s</label><img '\
-                           'src="%s" class="candidate_picture" /></li>' %\
+            output.append(u'<tr>'\
+                                '<td><label%s>%s %s</label></td>'\
+                                '<td><img src="%s" class="candidate_picture" /></td>'\
+                           '</tr>' % \
                            (label_for, rendered_cb, option_label, pictureurl))
-        output.append(u'</ul>')
         return mark_safe(u'\n'.join(output))
 

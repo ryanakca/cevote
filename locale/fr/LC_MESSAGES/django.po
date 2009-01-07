@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: alpha\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-07 15:18-0500\n"
+"POT-Creation-Date: 2009-01-07 17:04-0500\n"
 "PO-Revision-Date: 22009-01-07 15:26-0500\n"
 "Last-Translator: Ryan Kavanagh <ryanakca@kubuntu.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,20 +22,34 @@ msgstr "Anglais"
 msgid "French"
 msgstr "Français"
 
-#: template_dir/vote.html:22 template_dir/vote.html.py:27
-#: vote/templates/vote.html:22 vote/templates/vote.html.py:27
+#: template_dir/vote.html:23 template_dir/vote.html.py:28
+#: vote/templates/vote.html:23 vote/templates/vote.html.py:28
 msgid "Vote"
 msgstr "Vote"
 
-#: template_dir/vote.html:34 vote/templates/vote.html:34
-msgid "Select"
-msgstr "Selectionnez "
+#: template_dir/vote.html:34 vote/models.py:86 vote/templates/vote.html:34
+#: vote/templates/vote/results.html:33
+msgid "Position"
+msgstr "Poste"
 
-#: template_dir/vote.html:34 vote/templates/vote.html:34
+#: template_dir/vote.html:35 vote/models.py:109 vote/templates/vote.html:35
+msgid "Candidates"
+msgstr "Candidats"
+
+#: template_dir/vote.html:41 vote/templates/vote.html:41
+msgid "Please select"
+msgstr "S.V.P. choisir"
+
+#: template_dir/vote.html:41 vote/templates/vote.html:41
 msgid "candidate"
 msgstr "candidat(e)"
 
+#: template_dir/vote.html:41 vote/templates/vote.html:41
+msgid "from the set below"
+msgstr "de l'esemble ci-dessous"
+
 #: vote/forms.py:41
+#, python-format
 msgid "Selected wrong number of candidates. Select %d instead"
 msgstr "Trops de candidats ont été choisis. S.V.P. n'en choisir que %d"
 
@@ -83,10 +97,6 @@ msgstr "Nombre d'élus requis pour ce poste"
 msgid "Location of this field on the voter's balot"
 msgstr "Lieu de ce poste sur le bulletin de vote"
 
-#: vote/models.py:86 vote/templates/vote/results.html:33
-msgid "Position"
-msgstr "Poste"
-
 #: vote/models.py:87
 msgid "Positions"
 msgstr "Postes"
@@ -95,14 +105,11 @@ msgstr "Postes"
 msgid "Candidate"
 msgstr "Candidat(e)"
 
-#: vote/models.py:109
-msgid "Candidates"
-msgstr "Candidat(e)s"
-
 #: vote/templates/registration/login.html:23
 msgid "Supplied username or password is invalid. Please try again."
-msgstr "L'identifiant ou le mot de passe que vous avez supplié est invalide. \
-SVP vérifier vos authentifiants et réessayer de nouveau."
+msgstr ""
+"L'identifiant ou le mot de passe que vous avez supplié est invalide. SVP "
+"vérifier vos authentifiants et réessayer de nouveau."
 
 #: vote/templates/registration/login.html:32 vote/templates/vote/login.html:31
 msgid "login"
@@ -127,3 +134,6 @@ msgstr "Succès"
 #: vote/templates/vote/success.html:26
 msgid "Success, your votes have been submitted. Logging out."
 msgstr "Succès, vos votes ont étés soumis. Fin des communications."
+
+#~ msgid "Select"
+#~ msgstr "Selectionnez "

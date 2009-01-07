@@ -1,4 +1,7 @@
 .candidate_picture {
-        position: absolute;
-        left: 25em;
+        height: 80px;
+}
+
+table {
+        border-width: 1px;
 }
