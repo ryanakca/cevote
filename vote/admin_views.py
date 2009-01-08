@@ -16,10 +16,12 @@
 #
 
 from django.shortcuts import get_object_or_404, render_to_response
-from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth.decorators import login_required, permission_required
+from django.utils.translation import ugettext as _
+from django.contrib.auth.models import User
+from django.template import RequestContext
 
-from vote.models import Position
+from vote.models import Position, Voter, Group
+from vote.admin_forms import CreateVoterForm
 
 def results(request):
     candidate_position_dict = {}
@@ -50,3 +52,35 @@ def results(request):
                 last_tie += 1
     return render_to_response('admin/vote/results.html', \
         {'candidate_position_dict': candidate_position_dict})
+
+def create_voters(request):
+    if request.method == 'POST': 
+        form = CreateVoterForm(request.POST)
+        if form.is_valid():
+            number = form.cleaned_data['number']
+            group = form.cleaned_data['group']
+            voter_number = User.objects.all().count() + 1
+            for i in range(number):
+                # We must make sure that there isn't already a user with the
+                # username "voter_%d" % i.
+                while User.objects.filter(username="voter_%d" % 
+                    (voter_number + i)):
+                    voter_number += 1
+                u = User(username="voter_%d" % (voter_number + i), 
+                         password='')
+                u.save()
+                u.set_unusable_password()
+                v = Voter(user=u, group=group)
+                v.save()
+            request.user.message_set.create(message=_("Created %d voters in"\
+            " group %s." % (number, group)))
+            #"%s group" % (number, group)))
+            return render_to_response('admin/vote/add_voters.html',
+                {'form': form}, context_instance=RequestContext(request))
+        else:
+            return render_to_response('admin/vote/add_voters.html', \
+                {'form': form})
+    else:
+        form = CreateVoterForm()
+        return render_to_response('admin/vote/add_voters.html', \
+           {'form': form})
