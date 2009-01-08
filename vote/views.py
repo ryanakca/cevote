@@ -23,8 +23,7 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.forms.models import modelformset_factory
 from django.views.generic.simple import direct_to_template
-from django.contrib.auth.decorators import login_required, user_passes_test, \
-                        permission_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import authenticate, logout, login as django_login
 from django.contrib.auth.models import User
 
@@ -98,35 +97,3 @@ def login(request):
                         "Invalid UUID or UUID has already voted.")
     else:
         return render_to_response('vote/login.html')
-
-@login_required
-@permission_required(lambda u: u.is_staff())
-def results(request):
-    candidate_position_dict = {}
-    for pos in PositionModel.objects.all():
-        # Create a dictionary of positions : [ [candidate1, wins?], [candidate2,
-        # wins?], ...]
-        candidate_position_dict[pos] = []
-        for can in pos.candidate_set.all().order_by('-votes'):
-            candidate_position_dict[pos].append([can, False])
-    for p in candidate_position_dict.keys():
-        if candidate_position_dict[p] == []:
-            # There aren't any candidates or nobody can win, let's remove
-            # the position from the dictionary
-            del candidate_position_dict[p]
-        else:
-        # Set the winners win value to True
-            # Use min, because there might be less candidates than the required
-            # amount
-            for winner in range(min(p.amount_of_electees, \
-                                len(candidate_position_dict[p]))):
-                candidate_position_dict[p][winner][1] = True
-            # If there are ties, set them to True too
-            last_tie = p.amount_of_electees
-            while (last_tie < len(candidate_position_dict[p])) and \
-                  (candidate_position_dict[p][last_tie][0].votes \
-                    == candidate_position_dict[p][last_tie - 1][0].votes):
-                candidate_position_dict[p][last_tie][1] = True
-                last_tie += 1
-    return render_to_response('vote/results.html', \
-        {'candidate_position_dict': candidate_position_dict})

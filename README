@@ -8,18 +8,23 @@ To install with symbolic links:
  1. Symbolic link to the contents of vote/media, from the root of your MEDIA_DIR. 
  2. Symbolic link to the contents of vote/templates, from the root of your
     TEMPLATE_DIR
- 3. Add 'from vote.settings import *' to your site's settings.py
- 4. Add the following line to urlpatterns your site's urls.py:
-    (r'^accounts/login/$', 'django.contrib.auth.views.login'),
+ 3. Follow the GenericInstall instructions below.
 
 To install by copying:
  1. Copy the contents of vote/media/ to the root of your MEDIA_DIR.
  2. Copy the contents of vote/templates/ to the root of your TEMPLATE_DIR
- 3. Add 'from vote.settings import *' to your site's settings.py
- 4. Add the following line to urlpatterns your site's urls.py:
+ 3. Follow the GenericInstall instructions below.
+
+GenericInstall instructions:
+ 1. Precede with ``To install with symbolic links'' or ``To install by
+    copying''.
+ 2. Add the following line to urlpatterns in your site's urls.py:
     (r'^accounts/login/$', 'django.contrib.auth.views.login'),
-
-To compile translations, run:
-django-admin.py compilemessages
-
-See comments in vote.settings for settings documentation.
+ 3. Add the following line to urlpatterns in your site's urls.py:
+    (r'^admin/vote/results/', 'cevote.vote.admin_views.results'),
+    making sure it precedes the following:
+    (r'^admin/(.*)', admin.site.root),
+ 4. Add 'from vote.settings import *' to your site's settings.py . See comments
+    in vote.settings for vote settings documentation.
+ 5. To compile translations, run:
+    django-admin.py compilemessages
