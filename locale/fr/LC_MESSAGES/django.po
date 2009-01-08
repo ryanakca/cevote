@@ -1,18 +1,22 @@
 # French translation for cevote.
 # Copyright (C) 2008 Ryan Kavanagh
 # This file is distributed under the same license as the CEVote package.
-# Ryan Kavanagh 2008 <ryanakca@kubuntu.org.
+# Ryan Kavanagh 2008 <ryanakca@kubuntu.org>.
 #
+# Ryan Kavanagh, 2009 <ryanakca@kubuntu.org>.
 msgid ""
 msgstr ""
 "Project-Id-Version: alpha\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-01-07 18:40-0500\n"
-"PO-Revision-Date: 22009-01-07 15:26-0500\n"
+"PO-Revision-Date: 2009-01-07 20:18-0500\n"
 "Last-Translator: Ryan Kavanagh <ryanakca@kubuntu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language-Team: American English <kde-i18n-doc@lists.kde.org>\n"
+"X-Generator: Lokalize 0.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: settings.py:31
 msgid "English"
@@ -60,11 +64,11 @@ msgstr "Nom du groupe"
 
 #: vote/models.py:31
 msgid "Percent of a vote this group can cast"
-msgstr "Pourcentage d'un vote que ce groupe représente "
+msgstr "Pourcentage d'un vote que ce groupe peut voter"
 
 #: vote/models.py:44
 msgid "Create voters"
-msgstr "Crée des voteurs"
+msgstr "Créer des voteurs"
 
 #: vote/models.py:47
 msgid "Voter group"
@@ -118,7 +122,7 @@ msgstr "Connexion"
 
 #: vote/templates/vote/results.html:22 vote/templates/vote/results.html:26
 msgid "Election Results"
-msgstr "Résultats des élections"
+msgstr "Résultat des élections"
 
 #: vote/templates/vote/results.html:35
 msgid "Votes"
@@ -126,7 +130,7 @@ msgstr "Votes"
 
 #: vote/templates/vote/results.html:60
 msgid "No positions have been created."
-msgstr "Aucun poste existe"
+msgstr "Aucun poste n'existe"
 
 #: vote/templates/vote/success.html:22 vote/templates/vote/success.html:25
 msgid "Success"
@@ -138,3 +142,4 @@ msgstr "Succès, vos votes ont étés soumis. Fin des communications."
 
 #~ msgid "Select"
 #~ msgstr "Selectionnez "
+

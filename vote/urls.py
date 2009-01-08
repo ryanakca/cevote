@@ -21,7 +21,6 @@ from cevote import settings
 urlpatterns = patterns('vote.views',
     (r'^$', 'vote'),
     (r'^login/$', 'login'),
-    (r'^results/$', 'results'),
 )
 
 urlpatterns += patterns('',
