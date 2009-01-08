@@ -28,7 +28,10 @@ class CandidateInline(admin.StackedInline):
 class PositionAdmin(admin.ModelAdmin):
     inlines = [CandidateInline,]
 
+class VoterAdmin(admin.ModelAdmin):
+    list_display = ('uuid', 'group', 'has_voted')
+
 admin.site.register(Position, PositionAdmin)
-admin.site.register(Candidate, CandidateAdmin)
+admin.site.register(Candidate)
 admin.site.register(Group)
-admin.site.register(Voter)
+admin.site.register(Voter, VoterAdmin)
