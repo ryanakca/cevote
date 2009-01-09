@@ -30,7 +30,7 @@ def copyright(commaseperatedyears):
                   commaseperatedyears
 
     copyright_msg = [
-u'Copyright (C) %(years)s Ryan Kavanagh <ryanakca@kubuntu.org>' % \
+u'Copyright (C) %(years)s Ryan Kavanagh' % \
         {'years': ', '.join(years)},
 u''
 u'This program is free software: you can redistribute it and/or modify',
