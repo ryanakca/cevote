@@ -1,6 +1,3 @@
-{% load i18n %}
-{% load linecount %}
-<html>
 <!--
   * Voting template
   * Copyright (C) 2008, 2009  Ryan Kavanagh <ryanakca@kubuntu.org>
@@ -19,12 +16,14 @@
   * along with this program.  If not, see <http://www.gnu.org/licenses/>.
   *
 -->
-    <head>
-        <title>{% trans "Vote" %}</title>
-            <link rel="stylesheet" href="/media_dir/vote.css"
-            type="text/css" />
-    </head>
-    <body>
+{% extends "vote_base.html" %}
+{% load i18n linecount %}
+{% block title %}{% trans "Vote" %}{% endblock %}
+{% block extrahead %}
+<link rel="stylesheet" href="/media_dir/vote.css" type="text/css" />
+{% endblock %}
+{% block content %}       
+    <div id="contentmain">
         <h1>{% trans "Vote" %}</h1>
         {% if position_forms %}
         <form action="." method="post">
@@ -45,6 +44,6 @@
             </table>
             <input type="submit">
         </form>
-        {% endif %}
-    </body>
-</html>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,5 +1,5 @@
 <!--
-# Add voters template
+# Vote object_history template
 # Copyright (C) 2008, 2009  Ryan Kavanagh <ryanakca@kubuntu.org>
 #
 # This program is free software: you can redistribute it and/or modify
@@ -16,15 +16,19 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 -->
-{% extends "admin/change_form.html" %}
-{% load i18n %}
-{% block title %}{% trans "Add Voter" %}{% endblock %}
+{% extends "admin/object_history.html" %}
+{% load copyright i18n admin_modify adminmedia %}
 
-{% block content %}
-<div id="content-main">
-    <form action="/admin/vote/voter/add/" method="POST">
-    {{ form.as_p }}
-    <input type="submit" value="Submit" />
-    </form>
+{% block extrastyle %}
+<link rel="stylesheet" href="/media_dir/vote_base.css" type="text/css" />
+{% endblock %}
+
+{% block footer %}
+{% block copyright %}
+<div id="footer">
+<div id="copyright">
+{% copyright "2008,2009" %}
 </div>
+</div>
+{% endblock %}
 {% endblock %}

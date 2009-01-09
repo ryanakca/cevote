@@ -44,7 +44,8 @@ def vote(request):
     # modelformset_factory to ignore the Meta class in forms
     PositionFormset = modelformset_factory(PositionModel,
             form=My_PositionForm, fields=('candidate_set'))
-    if request.method == "POST":
+    if request.method == "POST" and \
+            not request.user.get_profile().has_voted:
         vote_percentage = request.user.get_profile().group.vote_percentage
         formset = PositionFormset(data=request.POST, queryset=positions)
         if formset.is_valid():
