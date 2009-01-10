@@ -4,6 +4,10 @@ The SelectCandidateWidget is an AGPLv3 derivative of Django's
 SelectCheckboxMultiple, which was originally licensed under a BSD-style license.
 See the header of vote/SelectCandidateWidget.py for details.
 
+The UUIDField class is an AGPLv3 derivative of django-command-extensions
+UUIDField class, SVN revision 157. The original UUIDField was distributed under
+the X11 License. See the header of vote/UUIDField.py for details.  
+
 To install with symbolic links:
  1. Symbolic link to the contents of vote/media, from the root of your MEDIA_DIR. 
  2. Symbolic link to the contents of vote/templates, from the root of your

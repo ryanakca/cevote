@@ -25,7 +25,9 @@ urlpatterns = patterns('vote.views',
 
 urlpatterns += patterns('',
     (r'^success/$', 'django.contrib.auth.views.logout',
-                    {'template_name': 'vote/success.html'})
+                    {'template_name': 'vote/success.html'}),
+    (r'^copyright/$', 'django.views.generic.simple.direct_to_template',
+                    {'template': 'vote/copyright.html'}),
 )
 
 if settings.DEBUG:

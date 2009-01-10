@@ -75,8 +75,13 @@ def create_voters(request):
                 u.set_unusable_password()
                 v = Voter(user=u, group=group)
                 v.save()
-            request.user.message_set.create(message=_("Created %d voters in"\
-            " group %s." % (number, group)))
+            if number == 1:
+                voter_plural = 'voter'
+            else:
+                voter_plural = 'voters'
+            request.user.message_set.create(
+            message=_("Created %(n)d %(v_p)s in group %(g)s." % {'n': number, 
+            'v_p': voter_plural, 'g': group}))
             #"%s group" % (number, group)))
             return render_to_response('admin/vote/add_voters.html',
                 {'form': form}, context_instance=RequestContext(request))

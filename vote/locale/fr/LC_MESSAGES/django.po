@@ -1,0 +1,186 @@
+# French translation for cevote.
+# Copyright (C) 2008, 2009 Ryan Kavanagh
+# This file is distributed under the same license as the CEVote package.
+# Ryan Kavanagh 2008 <ryanakca@kubuntu.org>.
+#
+# Ryan Kavanagh, 2009 <ryanakca@kubuntu.org>.
+msgid ""
+msgstr ""
+"Project-Id-Version: alpha\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-01-09 23:02-0500\n"
+"PO-Revision-Date: 2009-01-09 22:58-0500\n"
+"Last-Translator: Ryan Kavanagh <ryanakca@kubuntu.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 0.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: admin_views.py:83
+#, python-format
+msgid "Created %(n)d %(v_p)s in group %(g)s."
+msgstr "Créé %(n)d %(v_p)s dans le group %(g)s."
+
+#: forms.py:41
+#, python-format
+msgid "Selected wrong number of candidates. Select %d instead."
+msgstr ""
+"Un mauvais nombre de candidats ont été choisis. S.V.P. n'en choisir que %d"
+
+#: models.py:30
+msgid "Group name"
+msgstr "Nom du groupe"
+
+#: models.py:31
+msgid "Percent of a vote this group can cast"
+msgstr "Pourcentage d'un vote que ce groupe peut voter"
+
+#: models.py:44
+msgid "Create voters"
+msgstr "Créer des voteurs"
+
+#: models.py:47
+msgid "Voter group"
+msgstr "Groupe de voteurs"
+
+#: models.py:48
+msgid "Voter groups"
+msgstr "Groupes de voteurs"
+
+#: models.py:56 templates/vote/login.html:29
+msgid "UUID"
+msgstr "UUID"
+
+#: models.py:57
+msgid "Has voted?"
+msgstr "A voté?"
+
+#: models.py:65
+msgid "Voter"
+msgstr "Voteur"
+
+#: models.py:66
+msgid "Voters"
+msgstr "Voteurs"
+
+#: models.py:75
+msgid "Amount of electees required to fill this position"
+msgstr "Nombre d'élus requis pour ce poste"
+
+#: models.py:78
+msgid "Location of this field on the voter's balot"
+msgstr "Lieu de ce poste sur le bulletin de vote"
+
+#: models.py:86 templates/admin/vote/results.html:35
+#: templates/vote/vote.html:33
+msgid "Position"
+msgstr "Poste"
+
+#: models.py:87
+msgid "Positions"
+msgstr "Postes"
+
+#: models.py:108 templates/admin/vote/results.html:36
+msgid "Candidate"
+msgstr "Candidat"
+
+#: models.py:109 templates/vote/vote.html:34
+msgid "Candidates"
+msgstr "Candidats"
+
+#: templates/admin/vote/add_voters.html:21
+msgid "Add Voter"
+msgstr "Ajouter des voteurs"
+
+#: templates/admin/vote/results.html:26
+msgid "Election Results"
+msgstr "Résultat des élections"
+
+#: templates/admin/vote/results.html:37
+msgid "Votes"
+msgstr "Votes"
+
+#: templates/admin/vote/results.html:62
+msgid "No positions have been created."
+msgstr "Aucun poste n'existe"
+
+#: templates/registration/login.html:24
+msgid "Supplied username or password is invalid. Please try again."
+msgstr ""
+"L'identifiant ou le mot de passe que vous avez supplié est invalide. SVP "
+"vérifier vos authentifiants et réessayer de nouveau."
+
+#: templates/registration/login.html:33 templates/vote/login.html:32
+msgid "login"
+msgstr "Connexion"
+
+#: templates/vote/copyright.html:21
+msgid "Legal"
+msgstr "Conditions d'utilisation"
+
+#: templates/vote/copyright.html:24
+msgid "Copyright"
+msgstr "Droit d'auteur"
+
+#: templates/vote/copyright.html:25
+msgid "CEVOTE is a Django-powered e-voting aplication."
+msgstr "CEVOTE est un système de vote électronique optimisé par Django."
+
+#: templates/vote/copyright.html:40
+msgid "Obtaining the source code"
+msgstr "Pour obtenir le code source"
+
+#: templates/vote/copyright.html:41
+msgid ""
+"You may obtain the original corresponding source with the <a href=\"http://"
+"bazaar-vcs.org/\">Bazaar VCS</a> by running the following command:"
+msgstr ""
+"Vous pouvez obtenir le code source original avec le logiciel de gestion de "
+"versios <a href=\"http://bazaar-vcs.org\">Bazaar</a> en éxécutant la "
+"commande ci-dessous :"
+
+#: templates/vote/copyright.html:46
+msgid ""
+"The corresponding source linked to above does not necessarily include "
+"subsequent modifications made by licensees."
+msgstr ""
+"Le code source disponible au lien ci-dessus n'incluera pas nécéssairement "
+"les modifications subséquentes faitent par les licensiés."
+
+#: templates/vote/copyright.html:48
+msgid "The GNU Affero General Public License"
+msgstr "La GNU Affero General Public License"
+
+#: templates/vote/success.html:21 templates/vote/success.html.py:24
+msgid "Success"
+msgstr "Succès"
+
+#: templates/vote/success.html:25
+msgid "Success, your votes have been submitted. Logging out."
+msgstr "Succès, vos votes ont étés soumis. Fin des communications."
+
+#: templates/vote/vote.html:21 templates/vote/vote.html.py:27
+msgid "Vote"
+msgstr "Vote"
+
+#: templates/vote/vote.html:40
+msgid "Please select"
+msgstr "S.V.P. choisir"
+
+#: templates/vote/vote.html:40
+msgid "candidate"
+msgstr "candidat"
+
+#: templates/vote/vote.html:40
+msgid "from each set below"
+msgstr "de l'ensemble ci-dessous"
+
+#~ msgid "English"
+#~ msgstr "Anglais"
+
+#~ msgid "French"
+#~ msgstr "Français"
+
+#~ msgid "Select"
+#~ msgstr "Selectionnez "
