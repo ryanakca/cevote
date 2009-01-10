@@ -36,6 +36,12 @@ from cevote.settings import PRINT
 
 @user_passes_test(lambda u: u.is_authenticated(), login_url='/vote/login/')
 def vote(request):
+    """
+    Voting ballot view.
+
+    @type request: HttpRequest
+    @rtype: HttpResponse
+    """
     # Getting the user data from profile
     group = request.user.get_profile().group
     positions = \
@@ -70,13 +76,28 @@ def vote(request):
             request.user.get_profile().save()
             return HttpResponseRedirect('/vote/success/')
         else:
-            return render_to_response('vote.html', {'position_forms':formset})
+            return render_to_response('vote/vote.html', {'position_forms':formset})
     else:
         forms = PositionFormset(queryset=positions)
-        return render_to_response('vote.html', {'position_forms':forms})
+        return render_to_response('vote/vote.html', {'position_forms':forms})
 
 def login(request):
+    """
+    UUID login view.
+
+    @type request: HttpRequest
+    @rtype: HttpResponse
+    """
+
     def _render_error(uuid, message):
+        """
+        @type uuid: str
+        @param uuid: UUID
+        @type message: str
+        @param message: error message
+        @rtype: HttpResponse
+        @return: UUID login form with UUID and error message.
+        """
         return render_to_response('vote/login.html', {'uuid': uuid,
                  'error_msg': _(message)})
 

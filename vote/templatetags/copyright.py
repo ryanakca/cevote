@@ -21,7 +21,14 @@ register = template.Library()
 
 @register.simple_tag
 def copyright(commaseperatedyears):
-    """ Template tag that prints a copyright notice. """
+    """
+    Template tag that prints a copyright notice.
+
+    @type commaseperatedyears: str
+    @param commaseperatedyears: Comma seperated years (ex: "2000,2001")
+    @rtype: unicode
+    @return: Copyright / license tag
+    """
     years = commaseperatedyears.split(',')
     for i in years:
         if not i.isalnum():
@@ -45,4 +52,4 @@ u'GNU Affero General Public License for more details.',
 u'',
 u'For more details and to obtain the source code, please follow',
 u'<a href="/vote/copyright/">this link</a>.']
-    return '<br>'.join(copyright_msg)
+    return u'<br>'.join(copyright_msg)

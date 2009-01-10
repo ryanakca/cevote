@@ -22,9 +22,13 @@ from vote.UUIDField import UUIDField
 
 # Create your models here.
 class Group(models.Model):
-    """ This class represents a group of Voters. Each group has a name and can
-    vote for certain positions. Certain groups can only cast half a vote. We'll
-    ask what percentage of a vote this group can cast.
+    """
+    This class represents a group of Voters.
+
+    @type name: str
+    @ivar name: Name of the group of Voters
+    @type vote_percentage: int
+    @type vote_percentage: The percentage of a vote this group can cast
     """
 
     name = models.CharField(_("Group name"), max_length=200)
@@ -34,23 +38,20 @@ class Group(models.Model):
     def __unicode__(self):
         return self.name
 
-    def create_voters(self, number, *args):
-        """ Creates number of Voter() with *args as its groups. """
-        for v in range(number):
-            v = Voter()
-            v.save()
-            for g in args:
-                g.voters.add(v)
-    create_voters.short_description = _("Create voters")
-
     class Meta:
         verbose_name = _("Voter group")
         verbose_name_plural = _("Voter groups")
 
 class Voter(models.Model):
-    """ This class represents voters. Each voter is identified by a UUID and can
-    be part of multiple groups. The boolean has_voted provides a mechanism to
-    provide the voter from voting twice.
+    """
+    This class represents voters.
+
+    @type has_voted: bool
+    @ivar has_voted: Wether the voter has voted
+    @type user: User
+    @ivar user: The Django User model
+    @type group: Group
+    @ivar group: The voting group
     """
 
     uuid = UUIDField(_("UUID"),version=4)
@@ -66,17 +67,26 @@ class Voter(models.Model):
         verbose_name_plural = _("Voters")
 
 class Position(models.Model):
-    """ This class represents a position. It has a name and the required
-    amount of people required to fill a position. voting_groups represents the
-    groups of voters that can vote for this position.
+    """ 
+    This class represents an electoral position.
+
+    @type name: str
+    @ivar name: Name of the position
+    @type amount_of_electees: int
+    @ivar amount_of_electees: Number of electees required to fill this position
+    @type voting_groups: Group
+    @ivar voting_group: Groups which may vote for this position
+    @type weight: int
+    @ivar weight: Location of this position on the voter's ballot. The lower
+    the lighter / higher on the ballot.
     """
 
     name = models.CharField(max_length=200)
-    amount_of_electees = models.IntegerField(_("Amount of electees " \
+    amount_of_electees = models.IntegerField(_("Number of electees " \
         "required to fill this position"))
     voting_groups = models.ManyToManyField(Group)
     weight = models.IntegerField(_("Location of this field on the " \
-        "voter's balot"), default=0)
+        "voter's ballot"), default=0)
 
     def __unicode__(self):
         return self.name
@@ -88,10 +98,21 @@ class Position(models.Model):
 
 
 class Candidate(models.Model):
-    """ This class represents a Candidate. Each candidate has a first_name, an
-    initial in for the occasion of two voters with the same first_name &
-    lastname, a lastname. Associated with a single position and a picture. Each
-    candidate is also associated with the amount of votes aquired.
+    """
+    This class represents a candidate.
+
+    @type first_name: str
+    @ivar first_name: The candidate's first_name
+    @type initial: str
+    @ivar initial: The candidate's initial
+    @type last_name: str
+    @ivar last_name: The candidate's last name
+    @type position: Position
+    @ivar position: Position this candidate is running for.
+    @type picture: str
+    @ivar picture: Path to picture
+    @type votes: int
+    @ivar votes: The number of votes this candidate has won.
     """
 
     first_name = models.CharField(max_length=50)

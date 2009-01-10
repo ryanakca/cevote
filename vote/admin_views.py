@@ -27,6 +27,14 @@ from vote.admin_forms import CreateVoterForm
 @login_required
 @permission_required(lambda u: u.is_staff())
 def results(request):
+    """
+    The election results view for the voting application. 
+
+    @type request: HttpRequest
+    @rtype: HttpResponse
+    @return: html table of election results
+    """
+
     candidate_position_dict = {}
     for pos in Position.objects.all():
         # Create a dictionary of positions : [ [candidate1, wins?], [candidate2,
@@ -57,6 +65,14 @@ def results(request):
         {'candidate_position_dict': candidate_position_dict})
 
 def create_voters(request):
+    """
+    Admin view for creating Voter objects.
+
+    @type request: HttpResponse
+    @rtype: HttpResponse
+    @return: page for creating Voter objects.
+    """
+
     if request.method == 'POST': 
         form = CreateVoterForm(request.POST)
         if form.is_valid():

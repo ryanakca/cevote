@@ -21,6 +21,10 @@ from django.contrib.auth.models import User
 from vote.models import Voter
 
 class CreateVoterForm(forms.ModelForm):
+    """
+    Form to create voters under the admin interface. It collects the number
+    of voters the administrator wishes to creates.
+    """
     number = forms.IntegerField()
 
     class Meta:

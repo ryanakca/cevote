@@ -18,8 +18,20 @@ from django.contrib.auth.models import User
 from vote.models import Voter
 
 class VoterBackend:
-    """ Authenticatin Backend for the Voter Model. """
+    """
+    Authentication Backend for the Voter model that uses UUIDs.
+    """
+
     def authenticate(self, uuid=None):
+        """
+        Custom authentication method using a UUID
+    
+        @type uuid: str
+        @param uuid: Voter's UUID
+        @rtype: User
+        @return: authenticated user
+        """
+
         try:
             voter = Voter.objects.get(uuid=uuid)
             if not voter.has_voted:
@@ -30,6 +42,15 @@ class VoterBackend:
             return None
 
     def get_user(self, user_id):
+        """
+        Fetches requested user
+
+        @type user_id: int
+        @param user_id: Requested User object's ID
+        @rtype: User
+        @return: requested user
+        """
+
         try:
             return User.objects.get(pk=user_id)
         except User.DoesNotExist:

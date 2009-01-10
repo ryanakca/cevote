@@ -43,7 +43,7 @@ from django.db.models.fields import CharField
 from django_extensions.db import fields
 
 class UUIDField(fields.UUIDField):
-
+    """ UUIDField representing a UUID in Django objects. """
     def __init__(self, verbose_name=None, name=None, auto=True, version=1, \
                  node=None, clock_seq=None, namespace=None, **kwargs):
         kwargs['max_length'] = 36

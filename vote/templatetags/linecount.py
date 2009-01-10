@@ -23,6 +23,13 @@ register = template.Library()
 @register.filter
 @stringfilter
 def linecount(text):
-    """ Template tag that counts the number of lines in text. """
+    """
+    Template tag that counts the number of lines in text.
+    
+    @type text: str
+    @param text: Text lines to count
+    @rtype: int
+    @return: The number of lines in text
+    """
     return len(text.splitlines())
 

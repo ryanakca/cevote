@@ -1,4 +1,5 @@
-This program is licensed under the AGPL version 3, see file headers for details.
+This program is licensed under the AGPL version 3, see file headers and the
+AGPL-3.0 file for details.
 
 The SelectCandidateWidget is an AGPLv3 derivative of Django's
 SelectCheckboxMultiple, which was originally licensed under a BSD-style license.
@@ -30,5 +31,31 @@ GenericInstall instructions:
     (r'^admin/(.*)', admin.site.root),
  4. Add 'from vote.settings import *' to your site's settings.py . See comments
     in vote.settings for vote settings documentation.
- 5. To compile translations, run:
+ 5. To compile translations, run the following command from the vote
+    application's directory:
     django-admin.py compilemessages
+ 6. To compile API documentation, run epydoc on the vote package.
+
+Howto use:
+ 1. Install and configure the vote application and enable the admin interface
+    if it has not already been done.
+ From the admin interface:
+ 2. Create voting groups. Since this application was written mainly for Student
+    council elections, groups represent groups of students who can vote for a
+    certain position. Example, only Grade 10, 11 and 12 students (``Grade
+    10--12'' Group) can vote for the ``Grade 10--12 representative'' position.
+ 3. Create positions, filling in the requested information and selecting the
+    groups that may for for the created positions.
+ 4. Create candidates for each position. You may optionally upload a picture.
+ 5. Create the desired amount of voters in each group and print the list of
+    created voters.
+ On election day:
+ 6. Have the voters queue. Once they have supplied credentials, randomly select
+    a UUID from the UUIDs created for their group and direct them to logon to
+    the UUID login page ('http://123.456.789.012/vote/' by default) and to
+    select their candidates. Inform them that they must thoroughly ensure that
+    they have correctly selected their choices before submitting since it is
+    impossible to uncast a vote.
+ After the elections:
+ 7. You may view the election results at any time by visiting
+    /admin/vote/results/ .

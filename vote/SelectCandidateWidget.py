@@ -57,11 +57,19 @@ from django.utils.safestring import mark_safe
 from itertools import chain
 
 class SelectCandidateWidget(forms.CheckboxSelectMultiple):
-    """ A widget that allows voters to select a candidate. It display's the
-        Candidate's name and picture side by side in a <p>
+    """ 
+    A widget that allows voters to select a candidate. It display's the
+    Candidate's name and picture side by side in a <p>
     """
     
     def render(self, name, value, attrs=None, choices=()):
+        """
+        Renders the widget.
+
+        @rtype: unicode
+        @return: html tablerows (<tr>) each containing a checkbox with the
+        candidate's name and picture beside it.
+        """
         if value is None: value = []
         has_id = attrs and 'id' in attrs
         final_attrs = self.build_attrs(attrs, name=name)

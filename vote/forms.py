@@ -21,11 +21,17 @@ from vote.models import Position, Candidate
 from vote.SelectCandidateWidget import SelectCandidateWidget
 
 class PositionForm(forms.ModelForm):
+    """ Position form vor the voting page. """
     candidate_set = forms.ModelMultipleChoiceField(
             Candidate.objects.all(),
             widget = SelectCandidateWidget)
 
     def __init__(self, *args, **kwargs):
+        """
+        Initializes the form. Sets form's candidate_set to the positions, and
+        the form's name, weight and number of electees to their appropriate
+        values.
+        """
         super(PositionForm, self).__init__(*args, **kwargs)
         self.fields['candidate_set'].queryset =\
                                 self.instance.candidate_set.all()
@@ -34,6 +40,14 @@ class PositionForm(forms.ModelForm):
         self.number = self.instance.amount_of_electees
 
     def clean(self):
+        """
+        Ensures that the user supplied data is clean.
+
+        @raise forms.ValidationError: If the wrong number of candidates is
+            selected
+        @return: cleaned_data
+        """
+
         if self.cleaned_data.has_key('candidate_set') and \
             (len(self.cleaned_data['candidate_set']) == self.number):
             return self.cleaned_data
@@ -42,6 +56,10 @@ class PositionForm(forms.ModelForm):
                 "candidates. Select %d instead." % self.number))
 
     class Meta:
+        """
+        ModelForm Meta class. Sets the ModelForm's model and the fields to
+        exclude.
+        """
         model = Position
         # fields = ('candidate_set')
         exclude = ('amount_of_electees', 'name', 'weight')
