@@ -58,7 +58,7 @@ def vote(request):
         if formset.is_valid():
             vote_percentage = request.user.get_profile().group.vote_percentage
             if request.POST.has_key('confirmed'):
-                print_list = []
+                print_list = [_("Vote percentage: %d") % vote_percentage]
                 for Position in formset.cleaned_data:
                     if Position.has_key('candidate_set'):
                         for candidate in Position['candidate_set']:
