@@ -16,6 +16,7 @@
 #
 
 import os
+import datetime
 
 from django.shortcuts import get_object_or_404, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
@@ -31,9 +32,9 @@ from django.template import RequestContext
 # *Sigh*, why must I import Position as PositionModel?
 # If I don't, I get the following exception:
 # local variable 'Position' referenced before assignment
-from vote.models import Position as PositionModel
+from vote.models import ElectionDateTime, Position as PositionModel
 from vote.forms import PositionForm as My_PositionForm
-from cevote.settings import PRINT
+from vote.settings import PRINT
 
 @user_passes_test(lambda u: u.is_authenticated(), login_url='/vote/login/')
 def vote(request):
@@ -111,6 +112,10 @@ def login(request):
         """
         return render_to_response('vote/login.html', {'uuid': uuid,
                  'error_msg': _(message)})
+
+    if len(ElectionDateTime.objects.filter(start__lt=\
+        datetime.datetime.now()).filter(end__gt=datetime.datetime.now())) == 0:
+        return _render_error('', 'It is not yet time to vote')
 
     if request.POST.has_key('uuid'):
         uuid = request.POST['uuid']

@@ -20,7 +20,12 @@
 
 import random
 import settings
-from voting.models import Position, Candidate
+import sys
+import os
+
+sys.path.insert(0, os.curdir)
+
+from vote.models import Position, Candidate
 
 def fill(candidates_per_group):
     Position(name="Président", amount_of_electees="1", weight="-10").save()
@@ -41,4 +46,4 @@ def fill(candidates_per_group):
                 position=p).save()
 
 if __name__ == "__main__":
-    fill(3)
+    fill(4)
