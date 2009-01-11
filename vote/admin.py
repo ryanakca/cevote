@@ -14,7 +14,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-from vote.models import Candidate, Position, Voter, Group
+from vote.models import Candidate, Position, Voter, Group, \
+                        ElectionDateTime
 from django.contrib import admin
 
 class CandidateAdmin(admin.ModelAdmin):
@@ -35,3 +36,4 @@ admin.site.register(Position, PositionAdmin)
 admin.site.register(Candidate)
 admin.site.register(Group)
 admin.site.register(Voter, VoterAdmin)
+admin.site.register(ElectionDateTime)

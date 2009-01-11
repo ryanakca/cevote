@@ -129,3 +129,24 @@ class Candidate(models.Model):
         verbose_name = _("Candidate")
         verbose_name_plural = _("Candidates")
         ordering = ['votes',]
+
+class ElectionDateTime(models.Model):
+    """
+    This class represents the date / time where users may vote.
+    
+    @type start: datetime
+    @ivar start: Time where the elections start
+    @type end: datetime
+    @ivar end: Time when the elections end
+    """
+
+    start = models.DateTimeField(_("Election start date/time."))
+    end = models.DateTimeField(_("Election end date/time."))
+
+    def __unicode__(self):
+        return "%s--%s" % (self.start, self.end)
+
+    class Meta:
+        verbose_name = _("Election times")
+        verbose_name_plural = verbose_name
+        ordering = ['start']
