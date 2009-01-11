@@ -19,13 +19,14 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.utils.translation import ugettext as _
 from django.contrib.auth.models import User
 from django.template import RequestContext
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import user_passes_test, \
+                                           permission_required
 
 from vote.models import Position, Voter, Group
 from vote.admin_forms import CreateVoterForm
 
-@login_required
 @permission_required(lambda u: u.is_staff())
+@user_passes_test(lambda u: u.is_authenticated(), login_url='/admin/')
 def results(request):
     """
     The election results view for the voting application. 

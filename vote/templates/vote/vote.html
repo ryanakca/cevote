@@ -25,6 +25,13 @@
 {% block content %}       
     <div id="contentmain">
         <h1>{% trans "Vote" %}</h1>
+        {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
         {% if position_forms %}
         <form action="." method="post">
             {{ position_forms.management_form }}
@@ -42,7 +49,10 @@
             {{ PositionForm.as_table }}
             {% endfor %}
             </table>
-            <input type="submit">
+            {% if confirmed %}
+            <input type="hidden" name="confirmed" value="confirmed" />
+            {% endif %}
+            <input type="submit" />
         </form>
         </div>
     {% endif %}
