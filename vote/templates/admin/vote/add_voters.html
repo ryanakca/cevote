@@ -16,15 +16,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 -->
-{% extends "admin/change_form.html" %}
-{% load i18n %}
+{% extends "admin/vote/change_form.html" %}
+{% load i18n admin_modify %}
 {% block title %}{% trans "Add Voter" %}{% endblock %}
 
 {% block content %}
-<div id="content-main">
     <form action="/admin/vote/voter/add/" method="POST">
     {{ form.as_p }}
     <input type="submit" value="Submit" />
     </form>
-</div>
 {% endblock %}

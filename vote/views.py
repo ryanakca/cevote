@@ -62,9 +62,10 @@ def vote(request):
                 for Position in formset.cleaned_data:
                     if Position.has_key('candidate_set'):
                         for candidate in Position['candidate_set']:
-                            # We must devide the vote_percentage by 100 since it's
-                            # an integer between 0 and 100, and we want to cast a
-                            # percent of a vote (half a vote, a whole vote, etc)
+                            # We must devide the vote_percentage by 100 since
+			    # it's an integer between 0 and 100, and we want
+			    # to cast a percent of a vote (half a vote, a whole 
+			    # vote, etc)
                             candidate.votes += 1 * (vote_percentage / 100)
                             candidate.save()
                         print_list.append(str((PositionModel.objects.get(id= \
@@ -80,8 +81,8 @@ def vote(request):
                 return HttpResponseRedirect('/vote/success/')
             else:
                 request.user.message_set.create(
-                message=ugettext("Please verify your choices since all votes are"+\
-                " final."))
+                message=ugettext(
+		"Please verify your choices since all votes are final."))
                 return render_to_response('vote/vote.html',
                        {'position_forms': formset,
                         'confirmed': 'confirmed'},

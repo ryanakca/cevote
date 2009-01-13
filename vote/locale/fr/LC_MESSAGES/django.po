@@ -8,86 +8,109 @@ msgid ""
 msgstr ""
 "Project-Id-Version: alpha\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-09 23:02-0500\n"
-"PO-Revision-Date: 2009-01-09 22:58-0500\n"
+"POT-Creation-Date: 2009-01-13 10:43-0500\n"
+"PO-Revision-Date: 2009-01-13 10:44-0500\n"
 "Last-Translator: Ryan Kavanagh <ryanakca@kubuntu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 0.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language-Team: French <>\n"
 
-#: admin_views.py:83
+#: admin_forms.py:28
+msgid "Number of voters"
+msgstr "Nombre de voteurs"
+
+#: admin_views.py:100
 #, python-format
 msgid "Created %(n)d %(v_p)s in group %(g)s."
 msgstr "Créé %(n)d %(v_p)s dans le group %(g)s."
 
-#: forms.py:41
+#: forms.py:55
 #, python-format
 msgid "Selected wrong number of candidates. Select %d instead."
 msgstr ""
 "Un mauvais nombre de candidats ont été choisis. S.V.P. n'en choisir que %d"
 
-#: models.py:30
+#: models.py:34
 msgid "Group name"
 msgstr "Nom du groupe"
 
-#: models.py:31
+#: models.py:35
 msgid "Percent of a vote this group can cast"
 msgstr "Pourcentage d'un vote que ce groupe peut voter"
 
-#: models.py:44
-msgid "Create voters"
-msgstr "Créer des voteurs"
-
-#: models.py:47
+#: models.py:42
 msgid "Voter group"
 msgstr "Groupe de voteurs"
 
-#: models.py:48
+#: models.py:43
 msgid "Voter groups"
 msgstr "Groupes de voteurs"
 
-#: models.py:56 templates/vote/login.html:29
+#: models.py:57 templates/vote/login.html:29
 msgid "UUID"
 msgstr "UUID"
 
-#: models.py:57
+#: models.py:58
 msgid "Has voted?"
 msgstr "A voté?"
 
-#: models.py:65
+#: models.py:66
 msgid "Voter"
 msgstr "Voteur"
 
-#: models.py:66
+#: models.py:67
 msgid "Voters"
 msgstr "Voteurs"
 
-#: models.py:75
-msgid "Amount of electees required to fill this position"
+#: models.py:85
+msgid "Number of electees required to fill this position"
 msgstr "Nombre d'élus requis pour ce poste"
 
-#: models.py:78
-msgid "Location of this field on the voter's balot"
+#: models.py:88
+msgid "Location of this field on the voter's ballot"
 msgstr "Lieu de ce poste sur le bulletin de vote"
 
-#: models.py:86 templates/admin/vote/results.html:35
-#: templates/vote/vote.html:33
+#: models.py:96 templates/admin/vote/results.html:35
+#: templates/vote/vote.html:40
 msgid "Position"
 msgstr "Poste"
 
-#: models.py:87
+#: models.py:97
 msgid "Positions"
 msgstr "Postes"
 
-#: models.py:108 templates/admin/vote/results.html:36
+#: models.py:129 templates/admin/vote/results.html:36
 msgid "Candidate"
 msgstr "Candidat"
 
-#: models.py:109 templates/vote/vote.html:34
+#: models.py:130 templates/vote/vote.html:41
 msgid "Candidates"
 msgstr "Candidats"
+
+#: models.py:143
+msgid "Election start date/time."
+msgstr "Temps du début des élections."
+
+#: models.py:144
+msgid "Election end date/time."
+msgstr "Temps de la fin de l'élection."
+
+#: models.py:150
+msgid "Election times"
+msgstr "Temps des élections"
+
+#: views.py:61
+#, python-format
+msgid "Vote percentage: %d"
+msgstr "Pourcent de vote: %d"
+
+#: views.py:85
+msgid "Please verify your choices since all votes are final."
+msgstr ""
+"S.V.P. vérifier vos choix, il est impossible de changer un vote soumit."
 
 #: templates/admin/vote/add_voters.html:21
 msgid "Add Voter"
@@ -164,17 +187,20 @@ msgstr "Succès, vos votes ont étés soumis. Fin des communications."
 msgid "Vote"
 msgstr "Vote"
 
-#: templates/vote/vote.html:40
+#: templates/vote/vote.html:47
 msgid "Please select"
 msgstr "S.V.P. choisir"
 
-#: templates/vote/vote.html:40
+#: templates/vote/vote.html:47
 msgid "candidate"
 msgstr "candidat"
 
-#: templates/vote/vote.html:40
+#: templates/vote/vote.html:47
 msgid "from each set below"
 msgstr "de l'ensemble ci-dessous"
+
+#~ msgid "Create voters"
+#~ msgstr "Créer des voteurs"
 
 #~ msgid "English"
 #~ msgstr "Anglais"
@@ -184,3 +210,4 @@ msgstr "de l'ensemble ci-dessous"
 
 #~ msgid "Select"
 #~ msgstr "Selectionnez "
+

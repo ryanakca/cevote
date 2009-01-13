@@ -25,7 +25,7 @@ class CreateVoterForm(forms.ModelForm):
     Form to create voters under the admin interface. It collects the number
     of voters the administrator wishes to creates.
     """
-    number = forms.IntegerField()
+    number = forms.IntegerField(label=_("Number of voters"))
 
     class Meta:
         model = Voter
