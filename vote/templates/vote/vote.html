@@ -40,7 +40,7 @@
                <th>{% trans "Position" %}</th>
                <th colspan="2">{% trans "Candidates" %}</th>
             </tr>
-            {% for PositionForm in position_forms.forms %}
+            {% for PositionForm in position_forms_forms %}
             <tr>
                 <td rowspan="{{ PositionForm.as_table|linecount|add:"2"  }}" > {{ PositionForm.name }} </td>
                 <td colspan="2">

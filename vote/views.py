@@ -85,14 +85,29 @@ def vote(request):
 		"Please verify your choices since all votes are final."))
                 return render_to_response('vote/vote.html',
                        {'position_forms': formset,
-                        'confirmed': 'confirmed'},
+                        'confirmed': 'confirmed',
+			# The following line is necessary, probably due to a bug in
+			# modelformset_factory: it adds an extra form for a nameless
+                        # position, and users are instructed to select 'None' from
+                        # no candidates. Merely an esthetic fix.
+			'position_forms_forms':formset.forms[:-1]},
                        context_instance=RequestContext(request))
         else:
             return render_to_response('vote/vote.html', 
-            {'position_forms':formset})
+            {'position_forms':formset,
+	     # The following line is necessary, probably due to a bug in
+             # modelformset_factory: it adds an extra form for a nameless
+             # position, and users are instructed to select 'None' from no 
+             # candidates. Merely an esthetic fix.
+	     'position_forms_forms':formset.forms[:-1]})
     else:
-        forms = PositionFormset(queryset=positions)
-        return render_to_response('vote/vote.html', {'position_forms':forms})
+        formset = PositionFormset(queryset=positions)
+        return render_to_response('vote/vote.html', {'position_forms':formset,
+	# The following line is necessary, probably due to a bug in
+	# modelformset_factory: it adds an extra form for a nameless position,
+        # and users are instructed to select 'None' from no candidates. Merely
+	# an esthetic fix.
+	'position_forms_forms':formset.forms[:-1]})
 
 def login(request):
     """
