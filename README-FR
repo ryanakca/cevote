@@ -1,0 +1,64 @@
+Ce programme est distribué sous la license AGPL version 3, voir les en-tête de
+ficher et le fichier AGPL pour obtenir plus de détails.
+
+Le SelectCandidateWidget est un dérivé AGPLv3 du SelectCheckboxMultiple à
+Django, qui était distribué sous une license style BSD. Voir l'en-tête de
+vote/SelectCandidateWidget.py pour obtenir plus de détails.
+
+La classe UUIDField est un dérivé AGPLv3 de la classe UUIDField à
+django-command-extension, révision SVN numéro 157. L'UUIDField original était
+distribué sous la license X11. Voir l'en-tête de vote/UUIDField.py pour obtenir
+plus de détails.
+
+Pour installer avec des liens:
+ 1. Créez un lien aux contenus de vote/media à partir de votre MEDIA_DIR.
+ 2. Créez un lien aux contenus de vote/templates à partir de votre TEMPLATE_DIR.
+ 3. Suivez les directives InstallationGénérique ci-dessous.
+
+Pour installer en copiant:
+ 1. Copiez les contenus de vote/media à votre MEDIA_DIR.
+ 2. Copiez les contenus de vote/templates à votre TEMPLATE_DIR
+ 3. Suivez les directives InstallationGénérique ci-dessous.
+
+InstallationGénérique:
+ 1. Commencez avec ``Pour installer avec des liens'' our ``Pour estialler en
+    copiant''.
+ 2. Ajoutez la ligne suivante au urlpatterns dans le fichier urls.py de votre
+    site:
+    (r'^accounts/login/$', 'django.contrib.auth.views.login'),
+ 3. Ajoutez la ligne suivante au urlpatterns dans le fichier urls.py de votre
+    site:
+    (r'^admin/vote/results/', 'cevote.vote.admin_views.results'),
+    en vous assurant qu'elle est avant la suivante:
+    (r'^admin/(.*)', admin.site.root),
+ 4. Ajoutez 'from vote.settings import *' au settings.py de votre site. Voir les
+    commentaires dans le fichier vote.settings pour en savoir plus.
+ 5. Pour compiler les traductions, executez la command suivante du dossier
+    'vote'.
+    django-admin.py compilemessages.
+ 6. Pour compiler la documentation, executez la commande ``epydoc'' sur le
+    dossier vote.
+
+Howto use:
+ 1. Install and configure the vote application and enable the admin interface
+    if it has not already been done.
+ From the admin interface:
+ 2. Create voting groups. Since this application was written mainly for Student
+    council elections, groups represent groups of students who can vote for a
+    certain position. Example, only Grade 10, 11 and 12 students (``Grade
+    10--12'' Group) can vote for the ``Grade 10--12 representative'' position.
+ 3. Create positions, filling in the requested information and selecting the
+    groups that may for for the created positions.
+ 4. Create candidates for each position. You may optionally upload a picture.
+ 5. Create the desired amount of voters in each group and print the list of
+    created voters.
+ On election day:
+ 6. Have the voters queue. Once they have supplied credentials, randomly select
+    a UUID from the UUIDs created for their group and direct them to logon to
+    the UUID login page ('http://123.456.789.012/vote/' by default) and to
+    select their candidates. Inform them that they must thoroughly ensure that
+    they have correctly selected their choices before submitting since it is
+    impossible to uncast a vote.
+ After the elections:
+ 7. You may view the election results at any time by visiting
+    /admin/vote/results/ .

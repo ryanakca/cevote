@@ -19,12 +19,12 @@
 #
 
 import random
-import settings
 import sys
 import os
 
 sys.path.insert(0, os.curdir)
 
+import settings
 from vote.models import Position, Candidate
 
 def fill(candidates_per_group):

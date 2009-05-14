@@ -33,7 +33,7 @@ class VoterBackend:
         """
 
         try:
-            voter = Voter.objects.get(uuid=uuid)
+            voter = Voter.objects.get(uuid__startswith=uuid)
             if not voter.has_voted:
                 return voter.user
             else:
