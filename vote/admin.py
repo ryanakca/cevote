@@ -30,7 +30,7 @@ class PositionAdmin(admin.ModelAdmin):
     inlines = [CandidateInline,]
 
 class VoterAdmin(admin.ModelAdmin):
-    list_display = ('uuid', 'group', 'has_voted')
+    list_display = ('__unicode__', 'group', 'has_voted')
 
 admin.site.register(Position, PositionAdmin)
 admin.site.register(Candidate)
