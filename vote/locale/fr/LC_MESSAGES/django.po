@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: alpha\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-14 19:31-0400\n"
-"PO-Revision-Date: 2009-05-14 19:30-0400\n"
+"POT-Creation-Date: 2009-05-14 22:00-0400\n"
+"PO-Revision-Date: 2009-05-14 22:01-0400\n"
 "Last-Translator: Ryan Kavanagh\n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -115,6 +115,10 @@ msgstr ""
 #: views.py:134
 msgid "It is not yet time to vote"
 msgstr "Il n'est pas encore l'heure de voter"
+
+#: views.py:148 views.py:151
+msgid "Invalid UUID or UUID has already voted."
+msgstr "Identifiant invalide ou qui a déja voté."
 
 #: templates/admin/vote/add_voters.html:21
 msgid "Add Voter"

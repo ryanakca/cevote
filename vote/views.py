@@ -145,9 +145,9 @@ def login(request):
                     return _render_error(uuid, "UUID Disabled.")
             else:
                 return _render_error(uuid,
-                        "Invalid UUID or UUID has already voted.")
+                        _("Invalid UUID or UUID has already voted."))
         except User.DoesNotExist:
             return _render_error(uuid,
-                        "Invalid UUID or UUID has already voted.")
+                        _("Invalid UUID or UUID has already voted."))
     else:
         return render_to_response('vote/login.html')
