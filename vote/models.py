@@ -60,7 +60,7 @@ class Voter(models.Model):
     group = models.ForeignKey(Group)
 
     def __unicode__(self):
-        return self.uuid
+        return str(self.uuid)[:15]
 
     class Meta:
         verbose_name = _("Voter")
@@ -119,7 +119,7 @@ class Candidate(models.Model):
     initial = models.CharField(max_length=5)
     last_name = models.CharField(max_length=75)
     position = models.ForeignKey(Position)
-    picture = models.ImageField(upload_to='candidate_pictures', blank=True)
+    picture = models.ImageField(upload_to='vote/candidate_pictures/', blank=True)
     votes = models.FloatField(default=0)
 
     def __unicode__(self):

@@ -58,7 +58,7 @@ def vote(request):
         if formset.is_valid():
             vote_percentage = request.user.get_profile().group.vote_percentage
             if request.POST.has_key('confirmed'):
-                print_list = [_("Vote percentage: %d") % vote_percentage]
+                print_data = _("Vote percentage: %d") % vote_percentage
                 for Position in formset.cleaned_data:
                     if Position.has_key('candidate_set'):
                         for candidate in Position['candidate_set']:
@@ -66,13 +66,13 @@ def vote(request):
 			    # it's an integer between 0 and 100, and we want
 			    # to cast a percent of a vote (half a vote, a whole 
 			    # vote, etc)
-                            candidate.votes += 1 * (vote_percentage / 100)
+                            candidate.votes += 1 * (vote_percentage / 100.0)
                             candidate.save()
-                        print_list.append(str((PositionModel.objects.get(id= \
-                            Position['id']),
-                            Position['candidate_set'])))
+                        print_data += '\n' + \
+                        PositionModel.objects.get(id=Position['id']).name.encode('ascii',
+                        'replace')
+                        print_data += '\n' + str(Position['candidate_set'])
                 if PRINT['PRINT_VOTES']:
-                    print_data = '\n'.join(print_list)
                     fd = os.popen("lp -d %s" % PRINT['PRINTER'], "wb")
                     fd.write(print_data)
                 # Set the UUID as used.
@@ -131,7 +131,7 @@ def login(request):
 
     if len(ElectionDateTime.objects.filter(start__lt=\
         datetime.datetime.now()).filter(end__gt=datetime.datetime.now())) == 0:
-        return _render_error('', 'It is not yet time to vote')
+        return _render_error('', _('It is not yet time to vote'))
 
     if request.POST.has_key('uuid'):
         uuid = request.POST['uuid']
