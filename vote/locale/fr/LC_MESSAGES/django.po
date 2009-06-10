@@ -6,10 +6,10 @@
 # Ryan Kavanagh, 2009 <ryanakca@kubuntu.org>.
 msgid ""
 msgstr ""
-"Project-Id-Version: alpha\n"
+"Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-14 22:00-0400\n"
-"PO-Revision-Date: 2009-05-15 13:27-0400\n"
+"POT-Creation-Date: 2009-06-09 21:14-0400\n"
+"PO-Revision-Date: 2009-06-09 21:02-0400\n"
 "Last-Translator: Ryan Kavanagh\n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -30,8 +30,7 @@ msgstr "Créé %(n)d %(v_p)s dans le groupe %(g)s."
 #: forms.py:55
 #, python-format
 msgid "Selected wrong number of candidates. Select %d instead."
-msgstr ""
-"Un mauvais nombre de candidats a été choisi. S.V.P. n'en choisir que %d"
+msgstr "Le mauvais nombre de candidats a été choisi. SVP n'en choisir que %d ."
 
 #: models.py:34
 msgid "Group name"
@@ -147,7 +146,6 @@ msgid "login"
 msgstr "Connexion"
 
 #: templates/vote/copyright.html:21
-#, fuzzy
 msgid "Legal"
 msgstr "Conditions d'utilisation"
 
@@ -169,7 +167,7 @@ msgid ""
 "bazaar-vcs.org/\">Bazaar VCS</a> by running the following command:"
 msgstr ""
 "Vous pouvez obtenir le code source original avec le logiciel de gestion de "
-"versios <a href=\"http://bazaar-vcs.org\">Bazaar</a> en éxécutant la "
+"versions <a href=\"http://bazaar-vcs.org\">Bazaar</a> en éxécutant la "
 "commande ci-dessous :"
 
 #: templates/vote/copyright.html:46
@@ -207,6 +205,10 @@ msgstr "candidat"
 #: templates/vote/vote.html:47
 msgid "from each set below"
 msgstr "de l'ensemble ci-dessous"
+
+#: templates/vote/vote.html:55
+msgid "Submit"
+msgstr "Soumettre"
 
 #~ msgid "Create voters"
 #~ msgstr "Créer des voteurs"
