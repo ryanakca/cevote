@@ -17,8 +17,8 @@
 #
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from vote.models import Position, Candidate
-from vote.SelectCandidateWidget import SelectCandidateWidget
+from cevote.vote.models import Position, Candidate
+from cevote.vote.SelectCandidateWidget import SelectCandidateWidget
 
 class PositionForm(forms.ModelForm):
     """ Position form vor the voting page. """

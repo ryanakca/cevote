@@ -18,7 +18,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
-from vote.models import Voter
+from cevote.vote.models import Voter
 
 class CreateVoterForm(forms.ModelForm):
     """

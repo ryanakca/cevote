@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 from django.contrib.auth.models import User
-from vote.models import Voter
+from cevote.vote.models import Voter
 
 class VoterBackend:
     """

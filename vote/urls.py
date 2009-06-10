@@ -18,7 +18,7 @@ from django.conf.urls.defaults import *
 
 from cevote import settings
 
-urlpatterns = patterns('vote.views',
+urlpatterns = patterns('cevote.vote.views',
     (r'^$', 'vote'),
     (r'^login/$', 'login'),
 )
@@ -29,10 +29,3 @@ urlpatterns += patterns('',
     (r'^copyright/$', 'django.views.generic.simple.direct_to_template',
                     {'template': 'vote/copyright.html'}),
 )
-
-if settings.DEBUG:
-    urlpatterns += patterns('',
-        (r'^candidate_pictures/(?P<path>.*)$', 'django.views.static.serve', \
-            {'document_root':
-            '/home/ryan/work/cevote/media_dir/vote/candidate_pictures/'}),
-    )

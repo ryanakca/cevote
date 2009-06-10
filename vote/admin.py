@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-from vote.models import Candidate, Position, Voter, Group, \
+from cevote.vote.models import Candidate, Position, Voter, Group, \
                         ElectionDateTime
 from django.contrib import admin
 

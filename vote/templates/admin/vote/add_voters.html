@@ -21,7 +21,7 @@
 {% block title %}{% trans "Add Voter" %}{% endblock %}
 
 {% block content %}
-    <form action="/admin/vote/voter/add/" method="POST">
+    <form action="admin/vote/voter/add/" method="POST">
     {{ form.as_p }}
     <input type="submit" value="Submit" />
     </form>

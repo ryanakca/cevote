@@ -3,8 +3,8 @@
 PRINT = {'PRINT_VOTES': True, 'PRINTER': 'HPL'}
 
 # Do not touch the following unless you know what your are doing.
-AUTH_PROFILE_MODULE = 'vote.Voter'
+AUTH_PROFILE_MODULE = 'cevote.vote.Voter'
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'vote.backends.VoterBackend',
+    'cevote.vote.backends.VoterBackend',
 )

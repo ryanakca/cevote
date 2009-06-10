@@ -18,7 +18,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from vote.UUIDField import UUIDField
+from cevote.vote.UUIDField import UUIDField
 
 # Create your models here.
 class Group(models.Model):

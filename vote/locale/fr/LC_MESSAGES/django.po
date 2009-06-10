@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: alpha\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-05-14 22:00-0400\n"
-"PO-Revision-Date: 2009-05-14 22:01-0400\n"
+"PO-Revision-Date: 2009-05-15 13:27-0400\n"
 "Last-Translator: Ryan Kavanagh\n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,13 +25,13 @@ msgstr "Nombre de voteurs"
 #: admin_views.py:100
 #, python-format
 msgid "Created %(n)d %(v_p)s in group %(g)s."
-msgstr "Créé %(n)d %(v_p)s dans le group %(g)s."
+msgstr "Créé %(n)d %(v_p)s dans le groupe %(g)s."
 
 #: forms.py:55
 #, python-format
 msgid "Selected wrong number of candidates. Select %d instead."
 msgstr ""
-"Un mauvais nombre de candidats ont été choisis. S.V.P. n'en choisir que %d"
+"Un mauvais nombre de candidats a été choisi. S.V.P. n'en choisir que %d"
 
 #: models.py:34
 msgid "Group name"
@@ -110,7 +110,7 @@ msgstr "Pourcent de vote: %d"
 #: views.py:85
 msgid "Please verify your choices since all votes are final."
 msgstr ""
-"S.V.P. vérifier vos choix, il est impossible de changer un vote soumit."
+"S.V.P. vérifier vos choix, il est impossible de changer un vote soumis."
 
 #: views.py:134
 msgid "It is not yet time to vote"
@@ -139,14 +139,15 @@ msgstr "Aucun poste n'existe"
 #: templates/registration/login.html:24
 msgid "Supplied username or password is invalid. Please try again."
 msgstr ""
-"L'identifiant ou le mot de passe que vous avez supplié est invalide. SVP "
-"vérifier vos authentifiants et réessayer de nouveau."
+"L'identifiant ou le mot de passe que vous avez fourni est invalide. SVP "
+"vérifiez vos identifiants et réessayer de nouveau."
 
 #: templates/registration/login.html:33 templates/vote/login.html:32
 msgid "login"
 msgstr "Connexion"
 
 #: templates/vote/copyright.html:21
+#, fuzzy
 msgid "Legal"
 msgstr "Conditions d'utilisation"
 

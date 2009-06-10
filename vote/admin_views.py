@@ -22,11 +22,11 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import user_passes_test, \
                                            permission_required
 
-from vote.models import Position, Voter, Group
-from vote.admin_forms import CreateVoterForm
+from cevote.vote.models import Position, Voter, Group
+from cevote.vote.admin_forms import CreateVoterForm
 
 @permission_required(lambda u: u.is_staff())
-@user_passes_test(lambda u: u.is_authenticated(), login_url='/admin/')
+@user_passes_test(lambda u: u.is_authenticated(), login_url='admin/')
 def results(request):
     """
     The election results view for the voting application. 
