@@ -1,4 +1,4 @@
-#
+# -*- coding: utf-8 -*-
 # Forms for the voting application
 # Copyright (C) 2008, 2009  Ryan Kavanagh <ryanakca@kubuntu.org>
 #
@@ -52,8 +52,8 @@ class PositionForm(forms.ModelForm):
             (len(self.cleaned_data['candidate_set']) == self.number):
             return self.cleaned_data
         else:
-            raise forms.ValidationError(_("Selected wrong number of "
-                "candidates. Select %d instead." % self.number))
+            raise forms.ValidationError(_("Vous avez choisi le mauvais nombre"
+            " de canditats. SVP n'en choisir que %d." % self.number))
 
     class Meta:
         """

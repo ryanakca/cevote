@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-09 21:14-0400\n"
+"POT-Creation-Date: 2009-06-11 13:14-0400\n"
 "PO-Revision-Date: 2009-06-09 21:02-0400\n"
 "Last-Translator: Ryan Kavanagh\n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
@@ -29,7 +29,7 @@ msgstr "Créé %(n)d %(v_p)s dans le groupe %(g)s."
 
 #: forms.py:55
 #, python-format
-msgid "Selected wrong number of candidates. Select %d instead."
+msgid "Le mauvais nombre de candidats a été choisi. SVP n'en choisir que %d ."
 msgstr "Le mauvais nombre de candidats a été choisi. SVP n'en choisir que %d ."
 
 #: models.py:34
@@ -209,6 +209,10 @@ msgstr "de l'ensemble ci-dessous"
 #: templates/vote/vote.html:55
 msgid "Submit"
 msgstr "Soumettre"
+
+#~ msgid "Selected wrong number of candidates. Select %d instead."
+#~ msgstr ""
+#~ "Le mauvais nombre de candidats a été choisi. SVP n'en choisir que %d ."
 
 #~ msgid "Create voters"
 #~ msgstr "Créer des voteurs"

@@ -28,6 +28,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import authenticate, logout, login as django_login
 from django.contrib.auth.models import User
 from django.template import RequestContext
+from django.utils.encoding import smart_unicode
 
 # *Sigh*, why must I import Position as PositionModel?
 # If I don't, I get the following exception:
@@ -36,7 +37,7 @@ from cevote.vote.models import ElectionDateTime, Position as PositionModel
 from cevote.vote.forms import PositionForm as My_PositionForm
 from cevote.vote.settings import PRINT
 
-@user_passes_test(lambda u: u.is_authenticated(), login_url='vote/login/')
+@user_passes_test(lambda u: u.is_authenticated(), login_url='/2009/vote/login/')
 def vote(request):
     """
     Voting ballot view.
@@ -71,14 +72,14 @@ def vote(request):
                         print_data += '\n' + \
                         PositionModel.objects.get(id=Position['id']).name.encode('ascii',
                         'replace')
-                        print_data += '\n' + str(Position['candidate_set'])
+                        print_data += '\n' + str(Position['candidate_set'], errors='replace')
                 if PRINT['PRINT_VOTES']:
                     fd = os.popen("lp -d %s" % PRINT['PRINTER'], "wb")
                     fd.write(print_data)
                 # Set the UUID as used.
                 request.user.get_profile().has_voted = True
                 request.user.get_profile().save()
-                return HttpResponseRedirect('vote/success/')
+                return HttpResponseRedirect('/2009/vote/success/')
             else:
                 request.user.message_set.create(
                 message=ugettext(
@@ -140,7 +141,7 @@ def login(request):
             if user is not None:
                 if user.is_active:
                     django_login(request, user)
-                    return HttpResponseRedirect('vote/')
+                    return HttpResponseRedirect('/2009/vote/')
                 else:
                     return _render_error(uuid, "UUID Disabled.")
             else:
