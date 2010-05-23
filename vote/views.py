@@ -1,5 +1,5 @@
 # Views for the voting application.
-# Copyright (C) 2008, 2009  Ryan Kavanagh <ryanakca@kubuntu.org>
+# Copyright (C) 2008–2010  Ryan Kavanagh <ryanakca@kubuntu.org>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -144,12 +144,12 @@ def login(request):
                     django_login(request, user)
                     return HttpResponseRedirect('/2009/vote/')
                 else:
-                    return _render_error(uuid, "UUID Disabled.")
+                    return _render_error(uuid, "VID Disabled.")
             else:
                 return _render_error(uuid,
-                        _("Invalid UUID or UUID has already voted."))
+                        _("Invalid VID or VID has already voted."))
         except User.DoesNotExist:
             return _render_error(uuid,
-                        _("Invalid UUID or UUID has already voted."))
+                        _("Invalid VID or VID has already voted."))
     else:
         return render_to_response('vote/login.html')
