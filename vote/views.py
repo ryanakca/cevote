@@ -28,7 +28,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import authenticate, logout, login as django_login
 from django.contrib.auth.models import User
 from django.template import RequestContext
-from django.utils.encoding import smart_unicode
+from django.utils.encoding import smart_str
 
 # *Sigh*, why must I import Position as PositionModel?
 # If I don't, I get the following exception:
@@ -59,7 +59,8 @@ def vote(request):
         if formset.is_valid():
             vote_percentage = request.user.get_profile().group.vote_percentage
             if request.POST.has_key('confirmed'):
-                print_data = _("Vote percentage: %d") % vote_percentage
+                print_data = smart_str(_("Vote percentage: %d") % \
+                        vote_percentage)
                 for Position in formset.cleaned_data:
                     if Position.has_key('candidate_set'):
                         for candidate in Position['candidate_set']:
@@ -70,9 +71,9 @@ def vote(request):
                             candidate.votes += 1 * (vote_percentage / 100.0)
                             candidate.save()
                         print_data += '\n' + \
-                        PositionModel.objects.get(id=Position['id']).name.encode('ascii',
-                        'replace')
-                        print_data += '\n' + str(Position['candidate_set'], errors='replace')
+                        smart_str(PositionModel.objects.get(id=Position['id']).name,
+                                errors='replace')
+                        print_data += '\n' + smart_str(Position['candidate_set'], errors='replace')
                 if PRINT['PRINT_VOTES']:
                     fd = os.popen("lp -d %s" % PRINT['PRINTER'], "wb")
                     fd.write(print_data)
