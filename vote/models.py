@@ -1,6 +1,6 @@
 #
 # Models used for the voting application
-# Copyright (C) 2008, 2009  Ryan Kavanagh <ryanakca@kubuntu.org>
+# Copyright (C) 2008–2010  Ryan Kavanagh <ryanakca@kubuntu.org>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -18,7 +18,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from cevote.vote.UUIDField import UUIDField
+from cevote.vote.VIDField import VIDField
 
 # Create your models here.
 class Group(models.Model):
@@ -54,7 +54,7 @@ class Voter(models.Model):
     @ivar group: The voting group
     """
 
-    uuid = UUIDField(_("UUID"),version=4)
+    uuid = VIDField(_("VID"))
     has_voted = models.BooleanField(_("Has voted?"),default=False)
     user = models.ForeignKey(User,unique=True)
     group = models.ForeignKey(Group)
