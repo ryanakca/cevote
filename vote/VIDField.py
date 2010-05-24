@@ -16,7 +16,7 @@
 
 from django.db.models.fields import CharField
 from datetime import datetime
-from random import randint
+import random
 import string
 
 def ToBase62(number):
