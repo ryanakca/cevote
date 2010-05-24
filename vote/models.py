@@ -61,7 +61,7 @@ class Voter(models.Model):
     group = models.ForeignKey(Group)
 
     def __unicode__(self):
-        return str(self.uuid)[:13]
+        return str(self.uuid)
 
     class Meta:
         verbose_name = _("Voter")
