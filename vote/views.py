@@ -39,7 +39,7 @@ from cevote.vote.models import ElectionDateTime, Position as PositionModel
 from cevote.vote.forms import PositionForm as My_PositionForm
 from cevote.vote.settings import PRINT
 
-@user_passes_test(lambda u: u.is_authenticated(), login_url='/2009/vote/login/')
+@user_passes_test(lambda u: u.is_authenticated(), login_url='/vote/login/')
 def vote(request):
     """
     Voting ballot view.
@@ -82,7 +82,7 @@ def vote(request):
                 # Set the UUID as used.
                 request.user.get_profile().has_voted = True
                 request.user.get_profile().save()
-                return HttpResponseRedirect('/2009/vote/success/')
+                return HttpResponseRedirect('/vote/success/')
             else:
                 request.user.message_set.create(
                 message=ugettext(
@@ -144,7 +144,7 @@ def login(request):
             if user is not None:
                 if user.is_active:
                     django_login(request, user)
-                    return HttpResponseRedirect('/2009/vote/')
+                    return HttpResponseRedirect('/vote/')
                 else:
                     return _render_error(uuid, "VID Disabled.")
             else:
