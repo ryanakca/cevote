@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Models used for the voting application
 # Copyright (C) 2008–2010  Ryan Kavanagh <ryanakca@kubuntu.org>

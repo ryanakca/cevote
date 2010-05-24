@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+#
 # Views for the voting application.
 # Copyright (C) 2008–2010  Ryan Kavanagh <ryanakca@kubuntu.org>
 #
