@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 # copyright template tag
-# Copyright (C) 2009  Ryan Kavanagh <ryanakca@kubuntu.org>
+# Copyright (C) 2009–2010  Ryan Kavanagh <ryanakca@kubuntu.org>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as published by
@@ -51,5 +52,5 @@ u'MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the',
 u'GNU Affero General Public License for more details.',
 u'',
 u'For more details and to obtain the source code, please follow',
-u'<a href="/2009/vote/copyright/">this link</a>.']
+u'<a href="/vote/copyright/">this link</a>.']
     return u'<br>'.join(copyright_msg)
