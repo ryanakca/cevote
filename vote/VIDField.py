@@ -41,9 +41,9 @@ def ToBase62(number):
 
 class VIDField(CharField):
     """ Voter ID Field. """
-    def __init__(self, **kwargs):
+    def __init__(self, *args, **kwargs):
         kwargs['max_length'] = 15
-        CharField.__init__(self, **kwargs)
+        super(VIDField, self).__init__(*args, **kwargs)
 
     def get_internal_type(self):
         return "CharField"
