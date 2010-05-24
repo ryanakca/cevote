@@ -1,1 +1,5 @@
 *.pyc
+apache
+manage.py
+settings.py
+urls.py
