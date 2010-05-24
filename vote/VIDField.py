@@ -43,15 +43,19 @@ class VIDField(CharField):
     """ Voter ID Field. """
     def __init__(self, *args, **kwargs):
         kwargs['max_length'] = 15
+        kwargs['editable'] = False
         super(VIDField, self).__init__(*args, **kwargs)
 
     def get_internal_type(self):
-        return "CharField"
+        return CharField.__name__
+
+    def create_vid(self):
+        randomint = int(str(datetime.utcnow())[-6:]) * random.randint(100,
+                    10000) * random.randint(100, 10000)
+        return ToBase62(randomint)
 
     def pre_save(self, model_instance, add):
         if add:
-            randomint = int(str(datetime.utcnow())[-6:]) * random.randint(100,
-                        10000) * random.randint(100, 10000)
-            return unicode(ToBase62(randomint))
-        else:
-            return super(CharField, self).pre_save(model_instance, add)
+            value = unicode(self.create_vid())
+            setattr(model_instance, self.attname, value)
+            return value
