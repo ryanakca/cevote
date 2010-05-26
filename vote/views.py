@@ -54,7 +54,7 @@ def vote(request):
     # We must specify the fields since there's a bug in Drupal that causes
     # modelformset_factory to ignore the Meta class in forms
     PositionFormset = modelformset_factory(PositionModel,
-            form=My_PositionForm, fields=('candidate_set'))
+            form=My_PositionForm, fields=['candidate_set'])
     if request.method == "POST" and \
             not request.user.get_profile().has_voted:
         formset = PositionFormset(data=request.POST, queryset=positions)
